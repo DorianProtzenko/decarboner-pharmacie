@@ -537,7 +537,6 @@
         <a href="#who">Qui sommes nous</a>
         <a href="#resources">Ressources</a>
         <a href="#apropos">À propos</a>
-        <a href="#ajout-pdf">Ajouter des PDF</a>
       </nav>
     </div>
   </header>
@@ -758,45 +757,6 @@
         </div>
       </div>
     </section>
-
-    <section id="ajout-pdf">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Comment ajouter des PDF</h2>
-            <p>Le site peut rester dans un seul dossier. Il suffit d’ajouter les PDF dans un sous-dossier puis de mettre à jour les liens.</p>
-          </div>
-        </div>
-        <div class="guide-grid">
-          <article class="guide-card">
-            <h3>1. Créer un dossier</h3>
-            <p>Dans ton dépôt GitHub, crée un dossier nommé <code>pdf</code>.</p>
-            <ul>
-              <li><code>pdf/deprescrire-sans-nuire.pdf</code></li>
-              <li><code>pdf/gemcitabine-rtu.pdf</code></li>
-            </ul>
-          </article>
-          <article class="guide-card">
-            <h3>2. Envoyer le fichier</h3>
-            <p>Dans GitHub, ouvre le dépôt, clique sur <strong>Add file</strong>, puis <strong>Upload files</strong>, et glisse tes PDF dans le dossier <code>pdf</code>.</p>
-            <ul>
-              <li>Commit changes</li>
-              <li>Attendre quelques secondes</li>
-              <li>Le PDF est déjà en ligne</li>
-            </ul>
-          </article>
-          <article class="guide-card">
-            <h3>3. Modifier le lien</h3>
-            <p>Dans la partie <code>const publications = [...]</code>, remplace le chemin du PDF par le bon nom de fichier.</p>
-            <ul>
-              <li><code>{ label: "Télécharger le PDF", href: "pdf/deprescrire-sans-nuire.pdf" }</code></li>
-              <li><code>{ label: "Télécharger le PDF", href: "pdf/gemcitabine-rtu.pdf" }</code></li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
 
   <footer>
     <div class="container">
