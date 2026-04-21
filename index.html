@@ -200,19 +200,29 @@
       max-width: 80ch;
     }
 
-    .projects-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.08fr;
-      gap: 20px;
-    }
+.projects-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(420px, 1.05fr);
+  gap: 20px;
+  align-items: start;
+}
 
-    .panel { padding: 18px; }
+.panel {
+  padding: 18px;
+  position: sticky;
+  top: 92px;
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+}
 
-    .filters {
-      display: grid;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
+.project-detail {
+  padding: 24px;
+  background: linear-gradient(180deg, #ffffff, #f7fbf8);
+  position: sticky;
+  top: 92px;
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+}
 
     .filter-group {
       display: grid;
@@ -477,21 +487,28 @@
     .muted { color: var(--muted); }
     .small { font-size: 0.92rem; }
 
-    @media (max-width: 1024px) {
-      .projects-layout,
-      .methods-grid,
-      .pub-grid,
-      .guide-grid,
-      .profiles-grid,
-      .resources-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-detail .kpis,
-      .detail-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+  @media (max-width: 1024px) {
+    .projects-layout,
+    .methods-grid,
+    .pub-grid,
+    .guide-grid,
+    .profiles-grid,
+    .resources-grid {
+      grid-template-columns: 1fr;
     }
+
+  .panel,
+  .project-detail {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .project-detail .kpis,
+  .detail-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
     @media (max-width: 720px) {
       .nav { align-items: flex-start; padding: 14px 0; }
@@ -1206,25 +1223,29 @@
     }
 
     function renderDetail(project) {
-      detailTagsEl.innerHTML = `
-        <span class="tag">${project.theme}</span>
-        ${project.statuses.map(status => `<span class="status-badge ${getStatusClass(status)}">${status}</span>`).join("")}
-      `;
-      detailTitleEl.textContent = project.title;
-      detailSummaryEl.textContent = project.summary;
-      detailKpisEl.innerHTML = project.kpis.map(kpi => `
-        <div class="kpi">
-          <strong>${kpi.value}</strong>
-          <span class="muted small">${kpi.label}</span>
-        </div>
-      `).join("");
-      detailGridEl.innerHTML = project.details.map(block => `
-        <div class="detail-block">
-          <h4>${block.title}</h4>
-          <p>${block.text}</p>
-        </div>
-      `).join("");
-    }
+  detailTagsEl.innerHTML = `<span class="tag">${project.theme}</span>`;
+  detailStatusesEl.innerHTML = project.statuses
+    .map((status, index) => `<span class="status-badge ${statusBadgeClass(status)}">${project.statusLabels[index]}</span>`)
+    .join("");
+
+  detailTitleEl.textContent = project.title;
+  detailSummaryEl.textContent = project.summary;
+  detailKpisEl.innerHTML = project.kpis
+    .map(kpi => `<div class="kpi"><strong>${kpi.value}</strong><span class="muted small">${kpi.label}</span></div>`)
+    .join("");
+  detailGridEl.innerHTML = project.details
+    .map(block => `<div class="detail-block"><h4>${block.title}</h4><p>${block.text}</p></div>`)
+    .join("");
+
+  if (window.innerWidth <= 1024) {
+    document.getElementById("projectDetail").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  } else {
+    document.getElementById("projectDetail").scrollTop = 0;
+  }
+}
 
     function renderMethods() {
       methodsGridEl.innerHTML = methods.map(method => `
@@ -1258,7 +1279,7 @@
           <p>${pub.summary}</p>
           <div class="meta"><span>Projet : ${pub.project}</span></div>
           <div class="link-row">
-            ${pub.links.map(link => `<a class="text-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`).join("")}
+            ${pub.links.map(link => `<a class="text-link" href="${link.href}" target="_blank" rel="noopener noreferrer" download>${link.label}</a>`).join("")}          
           </div>
         </article>
       `).join("");
