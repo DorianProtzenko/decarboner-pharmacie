@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Décarboner la pharmacie hospitalière</title>
+  <style>
+    :root {
+      --bg: #f6faf8;
+      --surface: #ffffff;
+      --surface-2: #eef7f1;
+      --text: #143126;
+      --muted: #587264;
+      --primary: #1d7a56;
+      --primary-2: #2f9d74;
+      --border: #d7e6dd;
+      --shadow: 0 10px 30px rgba(20, 49, 38, 0.08);
+      --radius: 20px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #f8fcfa 0%, #f3f8f5 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(248, 252, 250, 0.82);
+      border-bottom: 1px solid rgba(215, 230, 221, 0.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 72px;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span { color: var(--primary); }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    .hero {
+      padding: 72px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .panel,
+    .card,
+    .project-detail,
+    .pub-card,
+    .method-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 5vw, 4.1rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.06rem;
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      border: none;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 20px;
+    }
+
+    .stat {
+      padding: 20px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fbfefc, #f1f8f4);
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.7rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      display: block;
+    }
+
+    section {
+      padding: 22px 0 44px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .projects-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 20px;
+    }
+
+    .panel { padding: 18px; }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .chip.active,
+    .chip:hover {
+      background: var(--surface-2);
+      color: var(--primary);
+      border-color: #c6dfd1;
+    }
+
+    .cards {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      padding: 18px;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #bdd7c8;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--primary);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .card h3,
+    .project-detail h3,
+    .pub-card h3,
+    .method-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      letter-spacing: -0.03em;
+    }
+
+    .card p,
+    .project-detail p,
+    .pub-card p,
+    .method-card p,
+    li {
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .project-detail {
+      padding: 24px;
+      min-height: 100%;
+    }
+
+    .project-detail .kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .kpi {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #fbfefc, #f2f8f4);
+    }
+
+    .kpi strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .detail-block {
+      padding: 16px;
+      border-radius: 16px;
+      background: #fbfefc;
+      border: 1px solid var(--border);
+    }
+
+    .detail-block h4 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+    }
+
+    .methods-grid,
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .method-card,
+    .pub-card {
+      padding: 20px;
+    }
+
+    .method-card ul,
+    .project-detail ul,
+    .pub-card ul {
+      padding-left: 18px;
+      margin: 10px 0 0;
+    }
+
+    .link-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .text-link {
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .about {
+      padding-bottom: 70px;
+    }
+
+    .about-box {
+      padding: 24px;
+      background: linear-gradient(180deg, #ffffff, #f0f7f3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 24px 0 36px;
+    }
+
+    .muted { color: var(--muted); }
+    .small { font-size: 0.92rem; }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .projects-layout,
+      .methods-grid,
+      .pub-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav { align-items: flex-start; padding: 14px 0; }
+      .nav-links { gap: 12px; }
+      .hero { padding-top: 42px; }
+      .hero-card { padding: 24px; }
+      .stats,
+      .project-detail .kpis,
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#accueil" class="brand">Décarboner la <span>pharmacie hospitalière</span></a>
+      <nav class="nav-links">
+        <a href="#projets">Projets</a>
+        <a href="#methodologie">Méthodologie</a>
+        <a href="#publications">Publications</a>
+        <a href="#apropos">À propos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">Plateforme de référence</div>
+          <h1>Mesurer, comprendre et décarboner la pharmacie hospitalière</h1>
+          <p>
+            Cette plateforme rassemble des projets de recherche, des référentiels méthodologiques
+            et des résultats valorisés autour de l’écologie en pharmacie hospitalière : pharmacie clinique,
+            analyse du cycle de vie, logistique, dispensation et production.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projets">Voir les projets</a>
+            <a class="btn" href="#methodologie">Voir la méthodologie</a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="stats">
+            <div class="stat">
+              <strong>4</strong>
+              <span>thématiques principales</span>
+            </div>
+            <div class="stat">
+              <strong>3</strong>
+              <span>rubriques structurantes</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>site statique, gratuit à héberger</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Projets</h2>
+            <p>Les projets sont regroupés par thématique. Cliquez sur une fiche pour afficher son résumé détaillé, ses résultats clés et ses perspectives.</p>
+          </div>
+        </div>
+
+        <div class="projects-layout">
+          <div class="panel">
+            <div class="filters" id="filters"></div>
+            <div class="cards" id="projectList"></div>
+          </div>
+
+          <article class="project-detail" id="projectDetail">
+            <div class="tag-row" id="detailTags"></div>
+            <h3 id="detailTitle">Sélectionnez un projet</h3>
+            <p id="detailSummary">Choisissez une fiche à gauche pour afficher son résumé.</p>
+            <div class="kpis" id="detailKpis"></div>
+            <div class="detail-grid" id="detailGrid"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methodologie">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Méthodologie</h2>
+            <p>Les référentiels, outils et logiques d’évaluation utilisés, avec leurs points forts et leurs limites.</p>
+          </div>
+        </div>
+
+        <div class="methods-grid" id="methodsGrid"></div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Publications / Résultats valorisés</h2>
+            <p>Communications, posters, interventions orales et ressources associées. Vous pourrez remplacer les liens d’exemple par vos PDF, vidéos et pages congrès.</p>
+          </div>
+        </div>
+
+        <div class="pub-grid" id="pubGrid"></div>
+      </div>
+    </section>
+
+    <section id="apropos" class="about">
+      <div class="container">
+        <div class="about-box">
+          <h2>À propos du site</h2>
+          <p>
+            Ce site a été pensé pour être simple à modifier : tout le contenu est dans un seul fichier HTML.
+            Pour ajouter un nouveau projet, une nouvelle méthode ou une nouvelle publication, il suffit de
+            dupliquer une entrée dans les tableaux JavaScript situés en bas du fichier.
+          </p>
+          <p class="small muted">
+            Hébergement conseillé : GitHub Pages, Netlify ou Cloudflare Pages. Les trois options ont une formule gratuite suffisante pour ce type de site.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>Décarboner la pharmacie hospitalière — site statique éditable gratuitement</div>
+    </div>
+  </footer>
+
+  <script>
+    const projects = [
+      {
+        id: "clinique-had",
+        theme: "Pharmacie clinique",
+        title: "Optimisation des prescriptions et déprescription en HAD",
+        short: "Évaluation de l’impact clinique, économique et environnemental d’une activité de pharmacie clinique en hospitalisation à domicile.",
+        status: "Valorisé",
+        tags: ["HAD", "Déprescription", "Éco-prescription"],
+        summary: "Ce projet explore l’intérêt d’un pharmacien clinicien en HAD, avec un focus sur la déprescription, l’optimisation des prescriptions et la réduction des soins inutiles ou disproportionnés.",
+        kpis: [
+          { value: "93%", label: "acceptation" },
+          { value: "~340 kg", label: "CO₂ eq/mois" },
+          { value: "~1250 €", label: "économie/mois" }
+        ],
+        details: [
+          {
+            title: "Objectif",
+            text: "Mesurer l’impact clinique, économique et environnemental d’une activité de pharmacie clinique intégrée à l’HAD."
+          },
+          {
+            title: "Points forts",
+            text: "Approche terrain, résultats concrets, lecture clinique et écologique simultanée."
+          },
+          {
+            title: "Résultats clés",
+            text: "La déprescription représente un levier majeur d’impact, avec forte acceptabilité et bénéfices multiples pour le patient et la structure."
+          },
+          {
+            title: "Perspectives",
+            text: "Formalisation d’outils d’aide, validation multicentrique, valorisation méthodologique de l’éco-prescription."
+          }
+        ]
+      },
+      {
+        id: "acv-llm",
+        theme: "ACV",
+        title: "Benchmark des LLMs pour les analyses de cycle de vie",
+        short: "Comparaison de plusieurs modèles génératifs face à une méthode de référence pour estimer l’impact environnemental des médicaments.",
+        status: "Exploratoire",
+        tags: ["IA", "ACV", "Benchmark"],
+        summary: "Le projet vise à déterminer si les IA génératives peuvent aider à approcher rapidement des ordres de grandeur en ACV médicamenteuse, sans se substituer à une validation humaine experte.",
+        kpis: [
+          { value: "7", label: "modèles testés" },
+          { value: "11", label: "molécules comparées" },
+          { value: "élevée", label: "variabilité observée" }
+        ],
+        details: [
+          {
+            title: "Objectif",
+            text: "Comparer la performance de plusieurs LLMs à une méthode de référence pour l’estimation d’impact environnemental."
+          },
+          {
+            title: "Message principal",
+            text: "Les LLM peuvent accélérer le repérage, mais leurs erreurs extrêmes imposent un contrôle humain systématique."
+          },
+          {
+            title: "Intérêt",
+            text: "Ouvre la voie à des outils d’aide à la prescription plus rapides, traçables et potentiellement intégrables en routine."
+          },
+          {
+            title: "Limite",
+            text: "Forte hétérogénéité selon les molécules, la voie d’administration et la robustesse des sources mobilisées."
+          }
+        ]
+      },
+      {
+        id: "retours-had",
+        theme: "Logistique / Dispensation",
+        title: "Retours de médicaments en HAD",
+        short: "Quantification des retours et construction d’un score de criticité pour prioriser les molécules réintégrables sans risque.",
+        status: "En cours",
+        tags: ["Retours", "HAD", "LFSS 2026"],
+        summary: "Ce travail s’intéresse au gaspillage induit par la dispensation hebdomadaire en HAD et propose une méthode de priorisation fondée sur l’impact écologique, économique et clinique.",
+        kpis: [
+          { value: "8573", label: "unités retournées" },
+          { value: "2,5 t", label: "CO₂ eq/mois" },
+          { value: "3215 €", label: "impact mensuel" }
+        ],
+        details: [
+          {
+            title: "Objectif",
+            text: "Sécuriser la gestion des retours et identifier les molécules prioritaires à réintégrer dans un cadre maîtrisé."
+          },
+          {
+            title: "Méthode",
+            text: "Analyse sur un mois, estimation des impacts, catégorisation selon la stabilité et score de criticité."
+          },
+          {
+            title: "Résultats clés",
+            text: "Proposition d’un noyau de 10 molécules prioritaires, concentrant une part importante de l’impact économique et carbone."
+          },
+          {
+            title: "Perspectives",
+            text: "Suivi des conditions domicile, automatisation des retours, traçabilité et articulation avec les expérimentations réglementaires."
+          }
+        ]
+      },
+      {
+        id: "retrofficine",
+        theme: "Logistique / Dispensation",
+        title: "Rétr’officine : lien ville-hôpital et décarbonation du circuit",
+        short: "Réorganisation du parcours de dispensation pour limiter les déplacements, renforcer le lien ville-hôpital et sécuriser les traitements.",
+        status: "Déployé",
+        tags: ["Ville-hôpital", "Dispensation", "Territoire"],
+        summary: "Le projet Rétr’officine repense le transfert de soins dans un territoire géographiquement complexe, avec un objectif d’accessibilité, de sécurité et de réduction d’impact environnemental.",
+        kpis: [
+          { value: "45%", label: "adhérence à 1 mois" },
+          { value: "30%", label: "temps PUI réduit" },
+          { value: "12 t", label: "CO₂ eq/an" }
+        ],
+        details: [
+          {
+            title: "Objectif",
+            text: "Faciliter l’accès aux traitements tout en maintenant la continuité clinique entre pharmacie hospitalière, patient et officine."
+          },
+          {
+            title: "Forces",
+            text: "Dimension territoriale, participative et directement transposable à d’autres zones à faible densité."
+          },
+          {
+            title: "Résultats clés",
+            text: "Réduction du temps logistique, amélioration des compétences, diminution des stocks dormants et économies carbone importantes."
+          },
+          {
+            title: "Perspectives",
+            text: "Évaluation de la satisfaction patient et officine, consolidation du modèle, extension progressive."
+          }
+        ]
+      },
+      {
+        id: "gemcitabine",
+        theme: "Production",
+        title: "Gemcitabine industrielle prête à l’emploi",
+        short: "Comparaison de l’impact environnemental entre poches industrielles prêtes à l’emploi et reconstitution hospitalière à partir de flacons.",
+        status: "Valorisé",
+        tags: ["Production", "RTU", "Gemcitabine"],
+        summary: "Ce projet montre l’intérêt écologique de la standardisation via des poches industrielles prêtes à l’emploi, avec extrapolation à l’échelle d’une activité réelle de production.",
+        kpis: [
+          { value: "~50%", label: "réduction d’impact" },
+          { value: "3,6 t", label: "CO₂ eq évitées" },
+          { value: "~2000", label: "poches utilisées" }
+        ],
+        details: [
+          {
+            title: "Objectif",
+            text: "Comparer deux modes de production de gemcitabine à dose équivalente selon une logique d’analyse de cycle de vie."
+          },
+          {
+            title: "Résultats clés",
+            text: "Le gain environnemental augmente avec la dose, avec environ 45 à 55% d’économie relative selon les posologies."
+          },
+          {
+            title: "Intérêt",
+            text: "Donne un argument écologique concret à la standardisation et à l’anticipation des préparations."
+          },
+          {
+            title: "Perspectives",
+            text: "Extension à d’autres molécules industrielles prêtes à l’emploi comme le pemetrexed ou l’irinotécan."
+          }
+        ]
+      },
+      {
+        id: "dose-banding",
+        theme: "Production",
+        title: "Dose-banding et standardisation de la production",
+        short: "Travaux autour de la standardisation des doses anticancéreuses, de l’anticipation des préparations et de leurs impacts organisationnels et écologiques.",
+        status: "En structuration",
+        tags: ["Dose-banding", "Standardisation", "Oncologie"],
+        summary: "Cette thématique regroupe les travaux visant à mieux standardiser la production de chimiothérapies pour sécuriser, anticiper et potentiellement décarboner les préparations.",
+        kpis: [
+          { value: "20–50%", label: "préparations anticipables" },
+          { value: "fort", label: "potentiel organisationnel" },
+          { value: "à documenter", label: "impact écologique" }
+        ],
+        details: [
+          {
+            title: "Objectif",
+            text: "Montrer l’intérêt de la standardisation des doses sur les plans organisationnel, temporel, économique et environnemental."
+          },
+          {
+            title: "Enjeu",
+            text: "Mieux absorber l’activité, limiter les préparations unitaires évitables et articuler robotisation, standardisation et pilotage intelligent."
+          },
+          {
+            title: "Question centrale",
+            text: "Le gain organisationnel bien connu s’accompagne-t-il d’un bénéfice écologique mesurable ?"
+          },
+          {
+            title: "Perspectives",
+            text: "Comparer plusieurs modèles de standardisation et documenter les effets sur déchets, temps de préparation et réactivité."
+          }
+        ]
+      }
+    ];
+
+    const methods = [
+      {
+        title: "Ecovamed®",
+        intro: "Outil de référence pratique pour estimer l’impact environnemental des médicaments.",
+        strengths: [
+          "Rapide à mobiliser",
+          "Très utile pour comparer des tendances",
+          "Bien adapté à des analyses appliquées en routine"
+        ],
+        limits: [
+          "Dépend des données disponibles",
+          "Peut manquer de finesse sur certains scénarios spécifiques",
+          "Doit parfois être complété par d’autres sources"
+        ]
+      },
+      {
+        title: "Carebone® + littérature",
+        intro: "Complément utile pour les dispositifs, consommables et situations où le médicament seul ne suffit pas à décrire l’impact.",
+        strengths: [
+          "Permet une vision plus complète du soin",
+          "Particulièrement intéressant pour les perfusions et dispositifs associés",
+          "Approche compatible avec l’analyse des organisations"
+        ],
+        limits: [
+          "Repose sur des hypothèses plus nombreuses",
+          "Temps de collecte plus important",
+          "Nécessite une lecture critique des données sources"
+        ]
+      },
+      {
+        title: "Cléo / ACT-IP / score de criticité",
+        intro: "Référentiels utiles pour relier l’impact clinique aux dimensions organisationnelles, économiques et environnementales.",
+        strengths: [
+          "Ancrage clinique fort",
+          "Aide à prioriser les actions",
+          "Facilite la reproductibilité des analyses"
+        ],
+        limits: [
+          "Part de subjectivité selon le contexte",
+          "Besoin d’harmonisation des cotations",
+          "Nécessite une explicitation méthodologique claire"
+        ]
+      }
+    ];
+
+    const publications = [
+      {
+        title: "Communication orale Hopipharm — optimisation des prescriptions en HAD",
+        type: "Vidéo",
+        event: "Hopipharm",
+        year: "2026",
+        project: "Pharmacie clinique",
+        summary: "Intervention orale sur l’éco-prescription, la déprescription et l’impact clinique, économique et environnemental en HAD.",
+        links: [
+          { label: "Voir la vidéo", href: "https://mediatheque.synprefh.cyim.com/mediatheque/media.aspx?mediaId=247070&channel=23854" }
+        ]
+      },
+      {
+        title: "Déprescrire sans nuire",
+        type: "Support congrès",
+        event: "SFPC",
+        year: "2026",
+        project: "Pharmacie clinique",
+        summary: "Travail sur la déprescription en HAD, ses impacts, ses limites et ses profils de patients les plus concernés.",
+        links: [
+          { label: "Ajouter le PDF", href: "#" }
+        ]
+      },
+      {
+        title: "Benchmark des LLMs pour des ACV médicamenteuses",
+        type: "Poster",
+        event: "Hopipharm",
+        year: "2026",
+        project: "ACV",
+        summary: "Comparaison de plusieurs modèles d’IA générative pour estimer l’impact environnemental des médicaments.",
+        links: [
+          { label: "Ajouter le PDF", href: "#" }
+        ]
+      },
+      {
+        title: "Retours de médicaments en HAD",
+        type: "Communication",
+        event: "Hopipharm",
+        year: "2026",
+        project: "Logistique / Dispensation",
+        summary: "Analyse d’impact et score de criticité pour prioriser les retours et intégrer les évolutions réglementaires.",
+        links: [
+          { label: "Ajouter le PDF", href: "#" }
+        ]
+      },
+      {
+        title: "Rétr’officine",
+        type: "Poster",
+        event: "EAHP",
+        year: "2026",
+        project: "Logistique / Dispensation",
+        summary: "Réorganisation du parcours ville-hôpital pour réduire les déplacements et améliorer l’accès aux traitements.",
+        links: [
+          { label: "Ajouter le PDF", href: "#" }
+        ]
+      },
+      {
+        title: "Gemcitabine prête à l’emploi : quand standardiser rime avec décarboner",
+        type: "Poster / support",
+        event: "GERPAC / Bergonié",
+        year: "2026",
+        project: "Production",
+        summary: "Comparaison environnementale entre production industrielle prête à l’emploi et reconstitution hospitalière.",
+        links: [
+          { label: "Ajouter le PDF", href: "#" }
+        ]
+      }
+    ];
+
+    const themes = ["Tous", ...new Set(projects.map(project => project.theme))];
+    let currentTheme = "Tous";
+
+    const filtersEl = document.getElementById("filters");
+    const projectListEl = document.getElementById("projectList");
+    const detailTitleEl = document.getElementById("detailTitle");
+    const detailSummaryEl = document.getElementById("detailSummary");
+    const detailTagsEl = document.getElementById("detailTags");
+    const detailKpisEl = document.getElementById("detailKpis");
+    const detailGridEl = document.getElementById("detailGrid");
+    const methodsGridEl = document.getElementById("methodsGrid");
+    const pubGridEl = document.getElementById("pubGrid");
+
+    function renderFilters() {
+      filtersEl.innerHTML = "";
+      themes.forEach(theme => {
+        const button = document.createElement("button");
+        button.className = `chip ${theme === currentTheme ? "active" : ""}`;
+        button.textContent = theme;
+        button.addEventListener("click", () => {
+          currentTheme = theme;
+          renderFilters();
+          renderProjects();
+        });
+        filtersEl.appendChild(button);
+      });
+    }
+
+    function renderProjects() {
+      projectListEl.innerHTML = "";
+      const filtered = currentTheme === "Tous"
+        ? projects
+        : projects.filter(project => project.theme === currentTheme);
+
+      filtered.forEach((project, index) => {
+        const article = document.createElement("article");
+        article.className = "card";
+        article.innerHTML = `
+          <div class="tag-row">
+            <span class="tag">${project.theme}</span>
+            <span class="tag">${project.status}</span>
+          </div>
+          <h3>${project.title}</h3>
+          <p>${project.short}</p>
+          <div class="meta">
+            ${project.tags.map(tag => `<span>${tag}</span>`).join("")}
+          </div>
+        `;
+        article.addEventListener("click", () => renderDetail(project));
+        projectListEl.appendChild(article);
+
+        if (index === 0) {
+          renderDetail(filtered[0]);
+        }
+      });
+    }
+
+    function renderDetail(project) {
+      detailTagsEl.innerHTML = `
+        <span class="tag">${project.theme}</span>
+        <span class="tag">${project.status}</span>
+      `;
+      detailTitleEl.textContent = project.title;
+      detailSummaryEl.textContent = project.summary;
+
+      detailKpisEl.innerHTML = project.kpis.map(kpi => `
+        <div class="kpi">
+          <strong>${kpi.value}</strong>
+          <span class="muted small">${kpi.label}</span>
+        </div>
+      `).join("");
+
+      detailGridEl.innerHTML = project.details.map(block => `
+        <div class="detail-block">
+          <h4>${block.title}</h4>
+          <p>${block.text}</p>
+        </div>
+      `).join("");
+    }
+
+    function renderMethods() {
+      methodsGridEl.innerHTML = methods.map(method => `
+        <article class="method-card">
+          <h3>${method.title}</h3>
+          <p>${method.intro}</p>
+          <div class="detail-block" style="margin-top: 12px;">
+            <h4>Forces</h4>
+            <ul>${method.strengths.map(item => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="detail-block" style="margin-top: 12px;">
+            <h4>Faiblesses / limites</h4>
+            <ul>${method.limits.map(item => `<li>${item}</li>`).join("")}</ul>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderPublications() {
+      pubGridEl.innerHTML = publications.map(pub => `
+        <article class="pub-card">
+          <div class="tag-row">
+            <span class="tag">${pub.type}</span>
+            <span class="tag">${pub.event} ${pub.year}</span>
+          </div>
+          <h3>${pub.title}</h3>
+          <p>${pub.summary}</p>
+          <div class="meta">
+            <span>Projet : ${pub.project}</span>
+          </div>
+          <div class="link-row">
+            ${pub.links.map(link => `<a class="text-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`).join("")}
+          </div>
+        </article>
+      `).join("");
+    }
+
+    renderFilters();
+    renderProjects();
+    renderMethods();
+    renderPublications();
+  </script>
+</body>
+</html>
