@@ -6,6 +6,7 @@
   <title>Décarboner la pharmacie hospitalière</title>
   <style>
     :root {
+      --bg: #f6faf8;
       --surface: #ffffff;
       --surface-2: #eef7f1;
       --surface-3: #f7fbf8;
@@ -17,10 +18,26 @@
       --shadow: 0 10px 30px rgba(20, 49, 38, 0.08);
       --radius: 20px;
       --max: 1180px;
+
+      --badge-green-bg: #e8f7ef;
+      --badge-green-text: #176b46;
+
+      --badge-gold-bg: #fff4d6;
+      --badge-gold-text: #8a5a00;
+
+      --badge-blue-bg: #e9f2ff;
+      --badge-blue-text: #2456a6;
+
+      --badge-orange-bg: #fff0e5;
+      --badge-orange-text: #a65319;
+
+      --badge-gray-bg: #edf1ef;
+      --badge-gray-text: #4d5d55;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -43,8 +60,8 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(12px);
-      background: rgba(248, 252, 250, 0.82);
-      border-bottom: 1px solid rgba(215, 230, 221, 0.8);
+      background: rgba(248, 252, 250, 0.88);
+      border-bottom: 1px solid rgba(215, 230, 221, 0.9);
     }
 
     .nav {
@@ -79,14 +96,7 @@
     .nav-links a:hover { color: var(--primary); }
 
     .hero {
-      padding: 72px 0 40px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: stretch;
+      padding: 72px 0 30px;
     }
 
     .hero-card,
@@ -106,16 +116,9 @@
 
     .hero-card {
       padding: 34px;
-    }
-
-    .hero-side {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
       background:
-        radial-gradient(circle at top right, rgba(47,157,116,0.12), transparent 35%),
-        linear-gradient(180deg, #ffffff, #f0f7f3);
+        radial-gradient(circle at top right, rgba(47,157,116,0.08), transparent 28%),
+        linear-gradient(180deg, #ffffff, #f4faf6);
     }
 
     .eyebrow {
@@ -133,7 +136,7 @@
 
     h1 {
       margin: 0 0 14px;
-      font-size: clamp(2.2rem, 5vw, 3.9rem);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
       line-height: 1.02;
       letter-spacing: -0.05em;
     }
@@ -142,7 +145,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 1.05rem;
-      max-width: 72ch;
+      max-width: 78ch;
     }
 
     .hero-actions {
@@ -173,25 +176,6 @@
       border: none;
     }
 
-    .mini-points {
-      display: grid;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .mini-point {
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.72);
-      border-radius: 16px;
-    }
-
-    .mini-point strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 0.95rem;
-    }
-
     section {
       padding: 22px 0 44px;
     }
@@ -213,22 +197,40 @@
     .section-head p {
       margin: 0;
       color: var(--muted);
-      max-width: 70ch;
+      max-width: 80ch;
     }
 
     .projects-layout {
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
+      grid-template-columns: 1fr 1.08fr;
       gap: 20px;
     }
 
     .panel { padding: 18px; }
 
     .filters {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .filter-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .filter-label {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .chip-row {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
     }
 
     .chip {
@@ -239,6 +241,7 @@
       border-radius: 999px;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.15s ease;
     }
 
     .chip.active,
@@ -256,12 +259,13 @@
     .card {
       padding: 18px;
       cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .card:hover {
       transform: translateY(-2px);
       border-color: #bdd7c8;
+      box-shadow: 0 14px 34px rgba(20, 49, 38, 0.10);
     }
 
     .tag-row {
@@ -282,6 +286,24 @@
       font-weight: 800;
       letter-spacing: 0.01em;
     }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .status-prime { background: var(--badge-gold-bg); color: var(--badge-gold-text); }
+    .status-valorise { background: var(--badge-green-bg); color: var(--badge-green-text); }
+    .status-publication { background: var(--badge-blue-bg); color: var(--badge-blue-text); }
+    .status-cours { background: var(--badge-orange-bg); color: var(--badge-orange-text); }
+    .status-structuration,
+    .status-deploye,
+    .status-exploratoire { background: var(--badge-gray-bg); color: var(--badge-gray-text); }
 
     .card h3,
     .project-detail h3,
@@ -322,7 +344,7 @@
 
     .project-detail .kpis {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       margin: 18px 0;
     }
@@ -336,7 +358,7 @@
 
     .kpi strong {
       display: block;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 4px;
       letter-spacing: -0.03em;
     }
@@ -359,6 +381,7 @@
       margin: 0 0 8px;
       font-size: 0.95rem;
       letter-spacing: -0.02em;
+      color: var(--text);
     }
 
     .methods-grid,
@@ -455,7 +478,6 @@
     .small { font-size: 0.92rem; }
 
     @media (max-width: 1024px) {
-      .hero-grid,
       .projects-layout,
       .methods-grid,
       .pub-grid,
@@ -464,14 +486,18 @@
       .resources-grid {
         grid-template-columns: 1fr;
       }
+
+      .project-detail .kpis,
+      .detail-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 720px) {
       .nav { align-items: flex-start; padding: 14px 0; }
       .nav-links { gap: 12px; }
       .hero { padding-top: 42px; }
-      .hero-card,
-      .hero-side { padding: 24px; }
+      .hero-card { padding: 24px; }
       .project-detail .kpis,
       .detail-grid {
         grid-template-columns: 1fr;
@@ -498,7 +524,7 @@
 
   <main>
     <section id="accueil" class="hero">
-      <div class="container hero-grid">
+      <div class="container">
         <div class="hero-card">
           <div class="eyebrow">CHICAS / GHT05</div>
           <h1>Impact des pratiques de soins sur le territoire</h1>
@@ -513,22 +539,30 @@
             <a class="btn" href="#methodologie">Voir la méthodologie</a>
           </div>
         </div>
-   </div>
       </div>
     </section>
-    
+
     <section id="projets">
       <div class="container">
         <div class="section-head">
           <div>
             <h2>Projets</h2>
-            <p>Les projets sont regroupés par thématique. </p>
+            <p>Filtres par thématique et par niveau d’avancement. Cliquez sur une fiche pour afficher le détail à droite.</p>
           </div>
         </div>
 
         <div class="projects-layout">
           <div class="panel">
-            <div class="filters" id="filters"></div>
+            <div class="filters">
+              <div class="filter-group">
+                <div class="filter-label">Thématiques</div>
+                <div class="chip-row" id="themeFilters"></div>
+              </div>
+              <div class="filter-group">
+                <div class="filter-label">Statuts</div>
+                <div class="chip-row" id="statusFilters"></div>
+              </div>
+            </div>
             <div class="cards" id="projectList"></div>
           </div>
 
@@ -561,7 +595,7 @@
         <div class="section-head">
           <div>
             <h2>Hypothèses actuelles pour les données de destruction</h2>
-            <p>Pour l’instant, nous utilisons les hypothèses ci-dessous pour estimer l’impact des déchets associés à différentes formes galéniques unitaires (estimation à partir du poids et des rapports de l'ADEME).</p>
+            <p>Pour l’instant, nous utilisons les hypothèses ci-dessous pour estimer l’impact des déchets associés à différentes formes galéniques unitaires, à partir du poids estimé et des rapports ADEME.</p>
           </div>
         </div>
         <div class="table-wrap">
@@ -587,7 +621,7 @@
         <div class="section-head">
           <div>
             <h2>Publications / résultats valorisés</h2>
-            <p>Posters, vidéos, conférences et supports de communication orale. Les conférences ANAP et ORPHEM apparaissent ici uniquement.</p>
+            <p>Posters, vidéos, conférences et supports de communication orale. Les conférences ANAP et ORPHEM apparaissent uniquement ici.</p>
           </div>
         </div>
 
@@ -600,7 +634,6 @@
         <div class="section-head">
           <div>
             <h2>Qui sommes nous</h2>
-            <p>Une approche à la fois terrain, scientifique et organisationnelle.</p>
           </div>
         </div>
 
@@ -618,8 +651,8 @@
             <div class="profile-photo"><img src="img/dorian-protzenko.jpg" alt="Dorian Protzenko" /></div>
             <h3>Dorian Protzenko</h3>
             <p>
-              Pharmacien chercheur & assistant spécialiste au CHICAS (Gap), en charge d’une unité d’HAD territoriale,
-              expérimente sur son service diverses approches (avec plus ou moins de succès).
+              Pharmacien chercheur et assistant spécialiste au CHICAS (Gap), en charge d’une unité d’HAD territoriale,
+              expérimentant sur son service diverses approches avec plus ou moins de succès.
             </p>
           </article>
         </div>
@@ -638,7 +671,7 @@
         <div class="resources-grid">
           <article class="guide-card">
             <h3>CERES – SFPC</h3>
-            <p>Collectif d’écoresponsabilité en pharmacie clinique (GT SFPC).</p>
+            <p>Collectif d’écoresponsabilité en pharmacie clinique.</p>
             <div class="link-row">
               <a class="text-link" href="https://sfpc.eu/ceres/#:~:text=CERES%20SFPC%20(Collectif%20d%27EcoResponsabilit%C3%A9,avec%20le%20%C2%AB%20D%C3%A9veloppement%20Durable%20%C2%BB." target="_blank" rel="noreferrer">Voir la ressource</a>
             </div>
@@ -673,6 +706,14 @@
             <p>Ressource complémentaire utile pour confronter certaines approches et données.</p>
             <div class="link-row">
               <a class="text-link" href="https://www.yewmaker.com/" target="_blank" rel="noreferrer">Voir la ressource</a>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <h3>Noxelia</h3>
+            <p>Solution digitale pour la mise en place et le suivi des stratégies de standardisation de chimiothérapies.</p>
+            <div class="link-row">
+              <a class="text-link" href="https://www.noxelia.com/" target="_blank" rel="noreferrer">Voir la ressource</a>
             </div>
           </article>
 
@@ -762,19 +803,20 @@
         theme: "Pharmacie clinique",
         title: "Optimisation des prescriptions en HAD",
         short: "Travail sur la pertinence des prescriptions, l’éco-prescription et la simplification du soin en hospitalisation à domicile.",
-        status: "Valorisé, primé à Hopipharm 2025 dans sa catégorie, en cours de publication",
+        statuses: ["Primé", "Valorisé", "En cours de publication"],
         tags: ["HAD", "Optimisation", "Éco-prescription"],
         summary: "Ce projet s’intéresse à l’optimisation des prescriptions en HAD : pertinence des traitements, réduction des soins disproportionnés, optimisation des voies d’administration et mise en cohérence avec les contraintes du territoire.",
         kpis: [
-          { value: ">90%", label: "acceptation" },
-          { value: "> 3 tonnes", label: "CO₂ eq/mois" },
-          { value: "clinique", label: "ancrage principal" }
+          { value: ">90%", label: "d'acceptation" },
+          { value: "> 3 tonnes", label: "d'eq CO₂/an économisés" },
+          { value: "clinique", label: "ancrage principal" },
+          { value: "> 20 000", label: "€ d'économie/an" }
         ],
         details: [
           { title: "Objectif", text: "Montrer ce que l’optimisation des prescriptions peut apporter en pratique dans une unité d’HAD territoriale, au-delà de la seule dimension réglementaire ou théorique." },
-          { title: "Intérêt", text: "Le projet sert de support pour illustrer ce qui peut être fait concrètement sur le territoire en termes d’éco-prescription, d’optimisation des modalités d’administration et de réduction du soin inutile." },
-          { title: "Résultats / message", text: "L’optimisation des prescriptions, notamment par l'arrêt et la réduction de recours à la voie injectable, permet de réduire fortement les dépenses et l'impact écologique de nos soins." },
-          { title: "Perspectives", text: "Continuer à formaliser les approches reproductibles et à mieux décrire les conditions de mise en œuvre dans d’autres équipes. Développer de nouveaux outils d'aide à la cotation écologique des IPs" }
+          { title: "Intérêt", text: "Le projet sert de support pour illustrer ce qui peut être fait concrètement sur le terrain en terme d’éco-prescription, d’optimisation des modalités d’administration et de réduction du soin inutile." },
+          { title: "Résultats / message", text: "L’optimisation des prescriptions, notamment par l’arrêt et la réduction de recours à la voie injectable, permet de réduire fortement les dépenses et l’impact écologique de nos soins." },
+          { title: "Perspectives", text: "Continuer à formaliser les approches reproductibles, mieux décrire les conditions de mise en œuvre dans d’autres équipes et développer de nouveaux outils d’aide à la cotation écologique des IPs." }
         ]
       },
       {
@@ -782,19 +824,35 @@
         theme: "Pharmacie clinique",
         title: "Déprescription : impact économique et écologique en HAD",
         short: "Travail spécifique sur la déprescription en HAD et ses impacts cliniques, économiques et environnementaux.",
-        status: "Valorisé, en cours de publication",
+        statuses: ["Valorisé", "En cours de publication"],
         tags: ["HAD", "Déprescription", "Impact"],
         summary: "Ce projet isole la déprescription comme objet de travail à part entière, avec une lecture croisée clinique, économique et écologique des interventions associées.",
         kpis: [
           { value: "93%", label: "acceptation" },
           { value: "~340 kg", label: "CO₂ eq/mois" },
-          { value: "~1250 €", label: "économie/mois" }
+          { value: "~1250 €", label: "économie/mois" },
+          { value: "3 personas développés", label: "support de travail pour adapter notre discours aux patients" }
         ],
         details: [
           { title: "Objectif", text: "Mesurer l’impact de la déprescription en HAD et montrer qu’elle peut constituer un levier fort sans perdre la logique de soin." },
-          { title: "Résultats clés", text: "Impact favorable clinique, économique et environnemental, avec une forte acceptabilité des interventions proposées et un poids important de la déprescription dans l’impact total observé. Réflexion sur la représentation de la déprescription auprès des patients, et les freins matérialisés." },
-          { title: "Projet en cours", text: "Développement d’une échelle Cléo+ intégrant aussi l’impact environnemental, économique et logistique pour compléter l’approche déjà proposée." },
-          { title: "Structuration", text: "Travail en cours de structuration en lien avec d’autres centres experts et avec des patients." }
+          { title: "Résultats clés", text: "Impact favorable clinique, économique et environnemental, avec une forte acceptabilité des interventions proposées et un poids important de la déprescription dans l’impact total observé. Réflexion sur la représentation de la déprescription auprès des patients et les freins matérialisés." },
+          { title: "Analyse qualitative", text: "3 situations types ont été modélisées afin de mieux anticiper les freins potentiels et bien encadrer l'arrêt des traitements." }
+        ]
+      },
+            {
+        id: "deprescription-had",
+        theme: "Pharmacie clinique",
+        title: "Développement d'échelles complémentaires à CLEO",
+        short: "Elaboration puis validation d'une échelle économique, écologique, et d'impact organisationnel pour mieux valoriser les IP de déprescription.",
+        statuses: ["En cours"],
+        tags: ["Déprescription", "Impact"],
+        summary: "Nous quantifions l'impact triple (€, kg eq CO₂, qualité de vie) d'IP catégorisées en grandes famille via l'échelle ACT-IP, puis nous proposons une moyenne d'impact de manière similaire à l'échelle Cléo.",
+        kpis: [
+          { value: "en cours", label: "état" }
+        ],
+        details: [
+          { title: "Objectif", text: "Fournir un outil permettant de mieux valoriser les IP de déprescription / généraliser et faciliter l'évaluation écologique des IP" },
+          { title: "Résultats clés", text: "En cours." }
         ]
       },
       {
@@ -802,18 +860,19 @@
         theme: "Pharmacie clinique",
         title: "Impact écologique des méthodes de perfusion",
         short: "Comparaison de l’impact écologique de la méthode de perfusion (discontinue / continue, plusieurs types de dispositifs médicaux) en intra-hospitalier et en HAD.",
-        status: "En cours",
+        statuses: ["En cours"],
         tags: ["Perfusion", "DM", "HAD", "Intra-hospitalier"],
         summary: "Projet visant à comparer l’impact écologique de différentes méthodes de perfusion, en tenant compte des dispositifs médicaux utilisés et des contextes de prise en charge.",
         kpis: [
           { value: "en cours", label: "état" },
           { value: "multi-DM", label: "périmètre" },
-          { value: "HAD / intra", label: "contextes" }
+          { value: "HAD / intra", label: "contextes" },
+          { value: "antibiotiques", label: "cible initiale" }
         ],
         details: [
           { title: "Objectif", text: "Comparer différentes méthodes de perfusion pour mieux comprendre leurs impacts écologiques, organisationnels et pratiques selon le contexte de soin." },
-          { title: "Enjeu", text: "Emettre des recommandations au sein de notre établissement sur les modalités de perfusion pour plusieurs antibiotiques et à des posologies différentes" },
-          { title: "Approche", text: "Dans notre hôpital, différentes méthodes de perfusion sont possibles : discontinues (poches de soluté) ou continues (PSE, pompe rythmique, diffuseur, ANAPA). La stabilité diffère selon les produits, et favoriser une méthode continue avec stabilité de 24h pourrait diminuer les coûts et l'empreinte environnementale." },
+          { title: "Enjeu", text: "Émettre des recommandations au sein de notre établissement sur les modalités de perfusion pour plusieurs antibiotiques et à des posologies différentes." },
+          { title: "Approche", text: "Dans notre hôpital, différentes méthodes de perfusion sont possibles : discontinues (poches de soluté) ou continues (PSE, pompe rythmique, diffuseur, ANAPA). La stabilité diffère selon les produits, et favoriser une méthode continue avec stabilité de 24h pourrait diminuer les coûts et l’empreinte environnementale." },
           { title: "Perspectives", text: "Aider à orienter les choix de pratique quand plusieurs modalités sont possibles sans dégrader la qualité des soins." }
         ]
       },
@@ -822,13 +881,14 @@
         theme: "ACV",
         title: "Benchmark des LLMs pour les analyses de cycle de vie",
         short: "Comparaison de plusieurs modèles génératifs face à une méthode de référence pour estimer l’impact environnemental des médicaments.",
-        status: "Exploratoire",
+        statuses: ["Exploratoire"],
         tags: ["IA", "ACV", "Benchmark"],
         summary: "Le projet vise à déterminer si les IA génératives peuvent aider à approcher rapidement des ordres de grandeur en ACV médicamenteuse, sans se substituer à une validation humaine experte.",
         kpis: [
           { value: "7", label: "modèles testés" },
           { value: "11", label: "molécules comparées" },
-          { value: "élevée", label: "variabilité observée" }
+          { value: "élevée", label: "variabilité observée" },
+          { value: "exploratoire", label: "niveau de maturité" }
         ],
         details: [
           { title: "Objectif", text: "Comparer la performance de plusieurs LLMs à une méthode de référence pour l’estimation d’impact environnemental." },
@@ -842,12 +902,12 @@
         theme: "Logistique / Dispensation",
         title: "Retours de médicaments en HAD",
         short: "Quantification des retours et construction d’un score de criticité pour prioriser les molécules réintégrables sans risque.",
-        status: "En cours",
+        statuses: ["En cours"],
         tags: ["Retours", "HAD", "LFSS 2026"],
         summary: "Ce travail s’intéresse au gaspillage induit par la dispensation hebdomadaire en HAD et propose une méthode de priorisation fondée sur l’impact écologique, économique et clinique.",
         kpis: [
           { value: "8573", label: "unités retournées" },
-          { value: "53", label: "% des dispensations retournées" },
+          { value: "53%", label: "dispensations retournées" },
           { value: "2,5 t", label: "CO₂ eq/mois" },
           { value: "3215 €", label: "impact mensuel" }
         ],
@@ -863,13 +923,14 @@
         theme: "Logistique / Dispensation",
         title: "Rétr’officine",
         short: "Réorganisation du parcours de dispensation pour limiter les déplacements, renforcer le lien ville-hôpital et sécuriser les traitements.",
-        status: "Déployé",
+        statuses: ["Déployé", "Valorisé"],
         tags: ["Ville-hôpital", "Dispensation", "Territoire"],
         summary: "Le projet Rétr’officine repense le transfert de soins dans un territoire géographiquement complexe, avec un objectif d’accessibilité, de sécurité et de réduction d’impact environnemental.",
         kpis: [
           { value: "45%", label: "adhérence à 1 mois" },
           { value: "30%", label: "temps PUI réduit" },
-          { value: "12 t", label: "CO₂ eq/an" }
+          { value: "12 t", label: "CO₂ eq/an" },
+          { value: "territoire", label: "ancrage" }
         ],
         details: [
           { title: "Objectif", text: "Faciliter l’accès aux traitements tout en maintenant la continuité clinique entre pharmacie hospitalière, patient et officine." },
@@ -883,13 +944,14 @@
         theme: "Logistique / Dispensation",
         title: "Impact écologique, économique et organisationnel du développement d’une filière chimiothérapie HAD",
         short: "Projet sur le développement d’une filière chimiothérapie HAD avec lecture croisée écologique, économique et organisationnelle.",
-        status: "En cours",
+        statuses: ["En cours"],
         tags: ["Chimiothérapie", "HAD", "Organisation", "Territoire"],
         summary: "Projet en cours visant à mieux comprendre ce que change le développement d’une filière chimiothérapie HAD pour les patients, l’organisation, les coûts et l’impact environnemental.",
         kpis: [
           { value: "en cours", label: "état" },
           { value: "triple", label: "lecture d’impact" },
-          { value: "territorial", label: "ancrage" }
+          { value: "territorial", label: "ancrage" },
+          { value: "HAD", label: "parcours étudié" }
         ],
         details: [
           { title: "Objectif", text: "Évaluer l’intérêt du développement d’une filière chimiothérapie HAD sur les plans écologique, économique et organisationnel." },
@@ -903,13 +965,14 @@
         theme: "Production",
         title: "Gemcitabine industrielle prête à l’emploi",
         short: "Comparaison de l’impact environnemental entre poches industrielles prêtes à l’emploi et reconstitution hospitalière à partir de flacons.",
-        status: "Valorisé",
+        statuses: ["Valorisé"],
         tags: ["Production", "RTU", "Gemcitabine"],
         summary: "Ce projet montre l’intérêt écologique de la standardisation via des poches industrielles prêtes à l’emploi, avec extrapolation à l’échelle d’une activité réelle de production.",
         kpis: [
           { value: "~50%", label: "réduction d’impact" },
           { value: "3,6 t", label: "CO₂ eq évitées" },
-          { value: "~2000", label: "poches utilisées" }
+          { value: "~2000", label: "poches utilisées" },
+          { value: "- 8 minutes", label: "d'attente en moins par poche" }
         ],
         details: [
           { title: "Objectif", text: "Comparer deux modes de production de gemcitabine à dose équivalente selon une logique d’analyse de cycle de vie." },
@@ -923,13 +986,14 @@
         theme: "Production",
         title: "Dose-banding et standardisation de la production",
         short: "Travaux autour de la standardisation des doses anticancéreuses, de l’anticipation des préparations et de leurs impacts organisationnels et écologiques.",
-        status: "En structuration",
+        statuses: ["En structuration"],
         tags: ["Dose-banding", "Standardisation", "Oncologie"],
         summary: "Cette thématique regroupe les travaux visant à mieux standardiser la production de chimiothérapies pour sécuriser, anticiper et potentiellement décarboner les préparations.",
         kpis: [
           { value: "20–50%", label: "préparations anticipables" },
           { value: "Noxelia", label: "outil / partenaire" },
-          { value: "à documenter", label: "impact écologique" }
+          { value: "à documenter", label: "impact écologique" },
+          { value: "structuration", label: "phase" }
         ],
         details: [
           { title: "Objectif", text: "Montrer l’intérêt de la standardisation des doses sur les plans organisationnel, temporel, économique et environnemental." },
@@ -943,33 +1007,33 @@
     const methods = [
       {
         title: "Carebone®",
-        intro: "Outil intéressant pour regarder l’ensemble du circuit du médicament et replacer le soin dans une logique plus globale d’organisation",
-        strengths: ["Libre accès", "Permet de calculer l'ACV des DM", "Utile pour compléter une lecture strictement médicamenteuse"],
+        intro: "Outil intéressant pour regarder l’ensemble du circuit du médicament et replacer le soin dans une logique plus globale d’organisation.",
+        strengths: ["Libre accès", "Permet de calculer l’ACV de certains dispositifs médicaux", "Utile pour compléter une lecture strictement médicamenteuse"],
         limits: ["Dépend des hypothèses retenues", "Moins simple à mobiliser rapidement sur certains projets très ciblés", "Ne prend pas en compte le marketing dans son ACV"]
       },
       {
         title: "Ecovamed®",
-        intro: "Référentiel très utile pour estimer l’impact du médicament jusqu’à la livraison en PUI, avec prise en compte de l’impact lié au marketing",
+        intro: "Référentiel très utile pour estimer l’impact du médicament jusqu’à la livraison en PUI, avec prise en compte de l’impact lié au marketing.",
         strengths: ["Rapide à utiliser", "Très utile pour comparer des tendances", "Bien adapté aux projets appliqués en routine"],
-        limits: ["Ne couvre pas à lui seul toute la chaîne du soin", "Doit parfois être complété par d’autres sources", "Non adapté à de la publication (NDA à signer avant utilisation)"]
+        limits: ["Ne couvre pas à lui seul toute la chaîne du soin", "Doit parfois être complété par d’autres sources", "Non adapté à de la publication sans accord spécifique d’utilisation"]
       },
       {
         title: "YewMaker / NHS",
-        intro: "Références utiles pour compléter certaines estimations et confronter les résultats à d’autres cadres de travail en santé",
+        intro: "Références utiles pour compléter certaines estimations et confronter les résultats à d’autres cadres de travail en santé.",
         strengths: ["Apporte un regard complémentaire", "Intéressant pour croiser des ordres de grandeur", "Permet de sortir d’une seule source de référence"],
         limits: ["Transposabilité parfois imparfaite au contexte français", "Données à interpréter avec prudence", "Pas toujours directement mobilisable telle quelle"]
       },
       {
         title: "ADEME — destruction",
-        intro: "Source mobilisée pour estimer l’impact de l’étape de destruction, notamment pour les retours, les restes non utilisés et certains scénarios de gaspillage",
+        intro: "Source mobilisée pour estimer l’impact de l’étape de destruction, notamment pour les retours, les restes non utilisés et certains scénarios de gaspillage.",
         strengths: ["Très utile pour documenter l’aval du circuit", "Permet d’intégrer la destruction dans l’analyse", "Complète les outils centrés sur le produit"],
         limits: ["Requiert des hypothèses explicites sur les masses et formes galéniques", "Approche simplifiée si les données réelles sont absentes", "À affiner dès que des données terrain plus précises sont disponibles"]
       },
-       {
-        title: "LCA Healthcare",
-        intro: "Référentiel d'ACV dans le domaine de la santé",
-        strengths: ["Permet d'avoir des travaux plus explicite sur les ACV de certains produits"],
-        limits: ["Méthode de calcul pas reproductible d'une ACV à l'autre"]
+      {
+        title: "HealthcareLCA",
+        intro: "Référentiel d’ACV dans le domaine de la santé.",
+        strengths: ["Permet d’avoir des travaux plus explicites sur les ACV de certains produits"],
+        limits: ["Méthode de calcul pas toujours reproductible d’une ACV à l’autre"]
       }
     ];
 
@@ -991,13 +1055,15 @@
     const publications = [
       {
         title: "Optimisation des prescriptions en HAD",
-        type: "Support et captation de communication orale",
+        type: "Support de communication orale",
         event: "Hopipharm",
         year: "2026",
         project: "Pharmacie clinique",
         summary: "Intervention sur l’éco-prescription et l’optimisation des prescriptions en HAD.",
-        links: [{ label: "Voir la vidéo", href: "https://mediatheque.synprefh.cyim.com/mediatheque/media.aspx?mediaId=247070&channel=23854" },
-               { label: "Télécharger le PDF", href: "pdf/hopipharm.pdf" }]
+        links: [
+          { label: "Voir la vidéo", href: "https://mediatheque.synprefh.cyim.com/mediatheque/media.aspx?mediaId=247070&channel=23854" },
+          { label: "Télécharger le PDF", href: "pdf/optimisation-prescriptions-had.pdf" }
+        ]
       },
       {
         title: "Déprescrire sans nuire",
@@ -1055,12 +1121,15 @@
       },
       {
         title: "Gemcitabine prête à l’emploi",
-        type: "Poster",
+        type: "Poster & communication orale",
         event: "GERPAC / Bergonié",
         year: "2026",
         project: "Production",
         summary: "Comparaison environnementale entre production industrielle prête à l’emploi et reconstitution hospitalière.",
-        links: [{ label: "Télécharger le PDF", href: "pdf/gemcitabine-rtu.pdf" }]
+        links: [
+          { label: "Poster", href: "pdf/gemcitabine-rtu.pdf" },
+          { label: "Communication orale", href: "pdf/gemcitabine-rtu2.pdf" }
+        ]
       },
       {
         title: "Noxelia",
@@ -1068,7 +1137,7 @@
         event: "Standardisation",
         year: "2026",
         project: "Production",
-        summary: "Ressources utiles autour de Noxelia et des solutions de standardisation de la production de chimiothérapies.",
+        summary: "Projet Noxelia : outil digital pour permettre l'anticipation de la production de chimiothérapie sans risque écologique et économique, via une standardisation des posologies personnalisée",
         links: [
           { label: "Lire l’article", href: "https://madeinmarseille.net/a-la-une-marseille/182553-noxelia-startup-optimise-chimiotherapies-caap-x-amu/" },
           { label: "Voir le site", href: "https://www.noxelia.com/" }
@@ -1076,10 +1145,14 @@
       }
     ];
 
-    const themes = ["Tous", ...new Set(projects.map(project => project.theme))];
-    let currentTheme = "Tous";
+    const themeOptions = ["Tous", ...new Set(projects.map(project => project.theme))];
+    const statusOptions = ["Tous", "Primé", "Valorisé", "En cours de publication", "En cours", "Déployé", "En structuration", "Exploratoire"];
 
-    const filtersEl = document.getElementById("filters");
+    let currentTheme = "Tous";
+    let currentStatus = "Tous";
+
+    const themeFiltersEl = document.getElementById("themeFilters");
+    const statusFiltersEl = document.getElementById("statusFilters");
     const projectListEl = document.getElementById("projectList");
     const detailTitleEl = document.getElementById("detailTitle");
     const detailSummaryEl = document.getElementById("detailSummary");
@@ -1090,32 +1163,68 @@
     const wasteTableBodyEl = document.getElementById("wasteTableBody");
     const pubGridEl = document.getElementById("pubGrid");
 
-    function renderFilters() {
-      filtersEl.innerHTML = "";
-      themes.forEach(theme => {
+    function getStatusClass(status) {
+      const map = {
+        "Primé": "status-prime",
+        "Valorisé": "status-valorise",
+        "En cours de publication": "status-publication",
+        "En cours": "status-cours",
+        "Déployé": "status-deploye",
+        "En structuration": "status-structuration",
+        "Exploratoire": "status-exploratoire"
+      };
+      return map[status] || "status-structuration";
+    }
+
+    function renderThemeFilters() {
+      themeFiltersEl.innerHTML = "";
+      themeOptions.forEach(theme => {
         const button = document.createElement("button");
         button.className = `chip ${theme === currentTheme ? "active" : ""}`;
         button.textContent = theme;
         button.addEventListener("click", () => {
           currentTheme = theme;
-          renderFilters();
+          renderThemeFilters();
           renderProjects();
         });
-        filtersEl.appendChild(button);
+        themeFiltersEl.appendChild(button);
+      });
+    }
+
+    function renderStatusFilters() {
+      statusFiltersEl.innerHTML = "";
+      statusOptions.forEach(status => {
+        const button = document.createElement("button");
+        button.className = `chip ${status === currentStatus ? "active" : ""}`;
+        button.textContent = status;
+        button.addEventListener("click", () => {
+          currentStatus = status;
+          renderStatusFilters();
+          renderProjects();
+        });
+        statusFiltersEl.appendChild(button);
+      });
+    }
+
+    function filterProjects() {
+      return projects.filter(project => {
+        const themeMatch = currentTheme === "Tous" || project.theme === currentTheme;
+        const statusMatch = currentStatus === "Tous" || project.statuses.includes(currentStatus);
+        return themeMatch && statusMatch;
       });
     }
 
     function renderProjects() {
       projectListEl.innerHTML = "";
-      const filtered = currentTheme === "Tous" ? projects : projects.filter(project => project.theme === currentTheme);
+      const filtered = filterProjects();
 
-      filtered.forEach((project, index) => {
+      filtered.forEach(project => {
         const article = document.createElement("article");
         article.className = "card";
         article.innerHTML = `
           <div class="tag-row">
             <span class="tag">${project.theme}</span>
-            <span class="tag">${project.status}</span>
+            ${project.statuses.map(status => `<span class="status-badge ${getStatusClass(status)}">${status}</span>`).join("")}
           </div>
           <h3>${project.title}</h3>
           <p>${project.short}</p>
@@ -1123,16 +1232,38 @@
         `;
         article.addEventListener("click", () => renderDetail(project));
         projectListEl.appendChild(article);
-        if (index === 0) renderDetail(filtered[0]);
       });
+
+      if (filtered.length > 0) {
+        renderDetail(filtered[0]);
+      } else {
+        detailTagsEl.innerHTML = "";
+        detailTitleEl.textContent = "Aucun projet trouvé";
+        detailSummaryEl.textContent = "Aucun projet ne correspond aux filtres sélectionnés.";
+        detailKpisEl.innerHTML = "";
+        detailGridEl.innerHTML = "";
+      }
     }
 
     function renderDetail(project) {
-      detailTagsEl.innerHTML = `<span class="tag">${project.theme}</span><span class="tag">${project.status}</span>`;
+      detailTagsEl.innerHTML = `
+        <span class="tag">${project.theme}</span>
+        ${project.statuses.map(status => `<span class="status-badge ${getStatusClass(status)}">${status}</span>`).join("")}
+      `;
       detailTitleEl.textContent = project.title;
       detailSummaryEl.textContent = project.summary;
-      detailKpisEl.innerHTML = project.kpis.map(kpi => `<div class="kpi"><strong>${kpi.value}</strong><span class="muted small">${kpi.label}</span></div>`).join("");
-      detailGridEl.innerHTML = project.details.map(block => `<div class="detail-block"><h4>${block.title}</h4><p>${block.text}</p></div>`).join("");
+      detailKpisEl.innerHTML = project.kpis.map(kpi => `
+        <div class="kpi">
+          <strong>${kpi.value}</strong>
+          <span class="muted small">${kpi.label}</span>
+        </div>
+      `).join("");
+      detailGridEl.innerHTML = project.details.map(block => `
+        <div class="detail-block">
+          <h4>${block.title}</h4>
+          <p>${block.text}</p>
+        </div>
+      `).join("");
     }
 
     function renderMethods() {
@@ -1173,7 +1304,8 @@
       `).join("");
     }
 
-    renderFilters();
+    renderThemeFilters();
+    renderStatusFilters();
     renderProjects();
     renderMethods();
     renderWasteTable();
