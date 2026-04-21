@@ -364,7 +364,8 @@
     .methods-grid,
     .pub-grid,
     .guide-grid,
-    .profiles-grid {
+    .profiles-grid,
+    .resources-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
@@ -459,7 +460,8 @@
       .methods-grid,
       .pub-grid,
       .guide-grid,
-      .profiles-grid {
+      .profiles-grid,
+      .resources-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -487,31 +489,12 @@
         <a href="#methodologie">Méthodologie</a>
         <a href="#publications">Publications</a>
         <a href="#who">Qui sommes nous</a>
+        <a href="#resources">Ressources</a>
         <a href="#apropos">À propos</a>
         <a href="#ajout-pdf">Ajouter des PDF</a>
       </nav>
     </div>
   </header>
-
-  <section id="apropos" class="about">
-  <div class="container">
-    <div class="guide-card">
-      <h2>À propos du site</h2>
-      <p>
-        Ce site n’est pas un référentiel officiel. Il s’agit d’un projet indépendant, construit à partir de nos travaux,
-        de nos hypothèses et de nos retours d’expérience. Il peut donc contenir des inexactitudes, des simplifications
-        ou des éléments encore en cours de discussion.
-      </p>
-      <p>
-        L’objectif est surtout de partager une démarche, de rendre visibles des projets de terrain et de proposer un support
-        de discussion ou de reproduction pour d’autres équipes.
-      </p>
-      <p class="small muted">
-        Contact : <a href="mailto:dorian.protzenko@gmail.com" class="text-link">dorian.protzenko@gmail.com</a>
-      </p>
-    </div>
-  </div>
-</section>
 
   <main>
     <section id="accueil" class="hero">
@@ -621,7 +604,7 @@
         <div class="section-head">
           <div>
             <h2>Publications / résultats valorisés</h2>
-            <p>Posters, vidéos et supports de communication orale. Les titres restent simples ; le type de support apparaît dans la fiche.</p>
+            <p>Posters, vidéos, conférences et supports de communication orale. Les conférences ANAP et ORPHEM apparaissent ici uniquement.</p>
           </div>
         </div>
 
@@ -640,7 +623,7 @@
 
         <div class="profiles-grid">
           <article class="profile-card">
-            <div class="profile-photo"><img src="alexis.jpg" alt="Alexis Plan" /></div>
+            <div class="profile-photo"><img src="img/alexis-plan.jpg" alt="Alexis Plan" /></div>
             <h3>Alexis Plan</h3>
             <p>
               Pharmacien hospitalier sur le secteur médicament, responsable des jeunes pharmaciens européens à l’EAHP,
@@ -649,7 +632,7 @@
           </article>
 
           <article class="profile-card">
-            <div class="profile-photo"><img src="dorian.jpg" alt="Dorian Protzenko" /></div>
+            <div class="profile-photo"><img src="img/dorian-protzenko.jpg" alt="Dorian Protzenko" /></div>
             <h3>Dorian Protzenko</h3>
             <p>
               Pharmacien assistant spécialiste, en charge de la pharmacie d’une unité d’HAD territoriale,
@@ -657,6 +640,87 @@
               avec plus ou moins de succès.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Ressources / personnes référentes</h2>
+            <p>Quelques ressources et structures utiles pour prolonger la réflexion ou situer les travaux dans un écosystème plus large.</p>
+          </div>
+        </div>
+
+        <div class="resources-grid">
+          <article class="guide-card">
+            <h3>CERES – SFPC</h3>
+            <p>Collectif d’écoresponsabilité en pharmacie clinique.</p>
+            <div class="link-row">
+              <a class="text-link" href="https://sfpc.eu/ceres/#:~:text=CERES%20SFPC%20(Collectif%20d%27EcoResponsabilit%C3%A9,avec%20le%20%C2%AB%20D%C3%A9veloppement%20Durable%20%C2%BB." target="_blank" rel="noreferrer">Voir la ressource</a>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <h3>The Shift Project – Santé</h3>
+            <p>Réflexion systémique sur la décarbonation du système de santé.</p>
+            <div class="link-row">
+              <a class="text-link" href="https://theshiftproject.org/thematiques/sante/" target="_blank" rel="noreferrer">Voir la ressource</a>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <h3>Carebone – AP-HP</h3>
+            <p>Présentation de l’outil Carebone mis à disposition des professionnels de santé.</p>
+            <div class="link-row">
+              <a class="text-link" href="https://www.aphp.fr/careboner-un-outil-pour-decarboner-le-soin-mis-la-disposition-de-tous-les-professionnels-de-sante" target="_blank" rel="noreferrer">Voir la ressource</a>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <h3>Ecovamed</h3>
+            <p>Référentiel utilisé pour certaines estimations environnementales des médicaments.</p>
+            <div class="link-row">
+              <a class="text-link" href="https://www.ecovamed.com/" target="_blank" rel="noreferrer">Voir la ressource</a>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <h3>YewMaker</h3>
+            <p>Ressource complémentaire utile pour confronter certaines approches et données.</p>
+            <div class="link-row">
+              <a class="text-link" href="https://www.yewmaker.com/" target="_blank" rel="noreferrer">Voir la ressource</a>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <h3>HealthcareLCA</h3>
+            <p>Ressource plus large autour des ACV et des approches environnementales en santé.</p>
+            <div class="link-row">
+              <a class="text-link" href="https://healthcarelca.com/" target="_blank" rel="noreferrer">Voir la ressource</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos" class="about">
+      <div class="container">
+        <div class="guide-card">
+          <h2>À propos du site</h2>
+          <p>
+            Ce site n’est pas un référentiel officiel. Il s’agit d’un projet indépendant, construit à partir de nos travaux,
+            de nos hypothèses et de nos retours d’expérience. Il peut donc contenir des inexactitudes, des simplifications
+            ou des éléments encore en cours de discussion.
+          </p>
+          <p>
+            L’objectif est surtout de partager une démarche, de rendre visibles des projets de terrain et de proposer un support
+            de discussion ou de reproduction pour d’autres équipes.
+          </p>
+          <p class="small muted">
+            Contact : <a href="mailto:dorian.protzenko@gmail.com" class="text-link">dorian.protzenko@gmail.com</a>
+          </p>
         </div>
       </div>
     </section>
@@ -701,157 +765,197 @@
   </main>
 
   <footer>
-  <div class="container">
-    <div>Décarbonons la pharmacie hospitalière </div>
-    <div class="small muted" style="margin-top:8px;">
-      Contact : <a href="mailto:dorian.protzenko@gmail.com" class="text-link">dorian.protzenko@gmail.com</a>
+    <div class="container">
+      <div>Décarbonons la pharmacie hospitalière</div>
+      <div class="small muted" style="margin-top:8px;">
+        Contact : <a href="mailto:dorian.protzenko@gmail.com" class="text-link">dorian.protzenko@gmail.com</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     const projects = [
-  {
-    id: "optimisation-had",
-    theme: "Pharmacie clinique",
-    title: "Optimisation des prescriptions en HAD",
-    short: "Travail sur la pertinence des prescriptions, l’éco-prescription et la simplification du soin en hospitalisation à domicile.",
-    status: "Valorisé",
-    tags: ["HAD", "Optimisation", "Éco-prescription"],
-    summary: "Ce projet s’intéresse à l’optimisation des prescriptions en HAD : pertinence des traitements, réduction des soins disproportionnés, optimisation des voies d’administration et mise en cohérence avec les contraintes du territoire.",
-    kpis: [
-      { value: ">90%", label: "acceptation" },
-      { value: "terrain", label: "approche" },
-      { value: "clinique", label: "ancrage principal" }
-    ],
-    details: [
-      { title: "Objectif", text: "Montrer ce que l’optimisation des prescriptions peut apporter en pratique dans une unité d’HAD territoriale, au-delà de la seule dimension réglementaire ou théorique." },
-      { title: "Intérêt", text: "Le projet sert de support pour illustrer ce qui peut être fait concrètement sur le territoire en termes d’éco-prescription, d’optimisation des modalités d’administration et de réduction du soin inutile." },
-      { title: "Résultats / message", text: "L’optimisation des prescriptions ne retire pas du soin ; elle retire ce qui n’en est pas, en gardant une lecture individualisée du patient et du parcours." },
-      { title: "Perspectives", text: "Continuer à formaliser les approches reproductibles et à mieux décrire les conditions de mise en œuvre dans d’autres équipes." }
-    ]
-  },
-  {
-    id: "deprescription-had",
-    theme: "Pharmacie clinique",
-    title: "Déprescription : impact économique et écologique en HAD",
-    short: "Travail spécifique sur la déprescription en HAD et ses impacts cliniques, économiques et environnementaux.",
-    status: "Valorisé",
-    tags: ["HAD", "Déprescription", "Impact"],
-    summary: "Ce projet isole la déprescription comme objet de travail à part entière, avec une lecture croisée clinique, économique et écologique des interventions associées.",
-    kpis: [
-      { value: "93%", label: "acceptation" },
-      { value: "~340 kg", label: "CO₂ eq/mois" },
-      { value: "~1250 €", label: "économie/mois" }
-    ],
-    details: [
-      { title: "Objectif", text: "Mesurer l’impact de la déprescription en HAD et montrer qu’elle peut constituer un levier fort sans perdre la logique de soin." },
-      { title: "Résultats clés", text: "Impact favorable clinique, économique et environnemental, avec une forte acceptabilité des interventions proposées et un poids important de la déprescription dans l’impact total observé." },
-      { title: "Projet en cours", text: "Développement d’une échelle Cléo+ intégrant aussi l’impact environnemental, économique et logistique pour compléter l’approche déjà proposée." },
-      { title: "Structuration", text: "Travail en cours de structuration en lien avec d’autres centres experts et avec des patients." }
-    ]
-  },
-  {
-    id: "acv-llm",
-    theme: "ACV",
-    title: "Benchmark des LLMs pour les analyses de cycle de vie",
-    short: "Comparaison de plusieurs modèles génératifs face à une méthode de référence pour estimer l’impact environnemental des médicaments.",
-    status: "Exploratoire",
-    tags: ["IA", "ACV", "Benchmark"],
-    summary: "Le projet vise à déterminer si les IA génératives peuvent aider à approcher rapidement des ordres de grandeur en ACV médicamenteuse, sans se substituer à une validation humaine experte.",
-    kpis: [
-      { value: "7", label: "modèles testés" },
-      { value: "11", label: "molécules comparées" },
-      { value: "élevée", label: "variabilité observée" }
-    ],
-    details: [
-      { title: "Objectif", text: "Comparer la performance de plusieurs LLMs à une méthode de référence pour l’estimation d’impact environnemental." },
-      { title: "Message principal", text: "Les LLM peuvent aider au repérage, mais leurs erreurs extrêmes imposent un contrôle humain systématique." },
-      { title: "Intérêt", text: "Permet de réfléchir à l’intégration future d’aides plus rapides dans les outils de prescription ou d’analyse." },
-      { title: "Limite", text: "Forte hétérogénéité selon les molécules, les voies d’administration et la qualité des sources mobilisées." }
-    ]
-  },
-  {
-    id: "retours-had",
-    theme: "Logistique / Dispensation",
-    title: "Retours de médicaments en HAD",
-    short: "Quantification des retours et construction d’un score de criticité pour prioriser les molécules réintégrables sans risque.",
-    status: "En cours",
-    tags: ["Retours", "HAD", "LFSS 2026"],
-    summary: "Ce travail s’intéresse au gaspillage induit par la dispensation hebdomadaire en HAD et propose une méthode de priorisation fondée sur l’impact écologique, économique et clinique.",
-    kpis: [
-      { value: "8573", label: "unités retournées" },
-      { value: "2,5 t", label: "CO₂ eq/mois" },
-      { value: "3215 €", label: "impact mensuel" }
-    ],
-    details: [
-      { title: "Objectif", text: "Sécuriser la gestion des retours et identifier les molécules prioritaires à réintégrer dans un cadre maîtrisé." },
-      { title: "Méthode", text: "Analyse sur un mois, estimation des impacts, catégorisation selon la stabilité et score de criticité." },
-      { title: "Résultats clés", text: "Proposition d’un noyau de molécules prioritaires concentrant une part importante de l’impact économique et carbone." },
-      { title: "Perspectives", text: "Suivi des conditions domicile, automatisation des retours, traçabilité et articulation avec les évolutions réglementaires." }
-    ]
-  },
-  {
-    id: "retrofficine",
-    theme: "Logistique / Dispensation",
-    title: "Rétr’officine",
-    short: "Réorganisation du parcours de dispensation pour limiter les déplacements, renforcer le lien ville-hôpital et sécuriser les traitements.",
-    status: "Déployé",
-    tags: ["Ville-hôpital", "Dispensation", "Territoire"],
-    summary: "Le projet Rétr’officine repense le transfert de soins dans un territoire géographiquement complexe, avec un objectif d’accessibilité, de sécurité et de réduction d’impact environnemental.",
-    kpis: [
-      { value: "45%", label: "adhérence à 1 mois" },
-      { value: "30%", label: "temps PUI réduit" },
-      { value: "12 t", label: "CO₂ eq/an" }
-    ],
-    details: [
-      { title: "Objectif", text: "Faciliter l’accès aux traitements tout en maintenant la continuité clinique entre pharmacie hospitalière, patient et officine." },
-      { title: "Forces", text: "Dimension territoriale, participative et directement transposable à d’autres zones à faible densité." },
-      { title: "Résultats clés", text: "Réduction du temps logistique, amélioration des compétences, diminution des stocks dormants et économies carbone importantes." },
-      { title: "Perspectives", text: "Évaluation de la satisfaction patient et officine, consolidation du modèle et extension progressive." }
-    ]
-  },
-  {
-    id: "gemcitabine",
-    theme: "Production",
-    title: "Gemcitabine industrielle prête à l’emploi",
-    short: "Comparaison de l’impact environnemental entre poches industrielles prêtes à l’emploi et reconstitution hospitalière à partir de flacons.",
-    status: "Valorisé",
-    tags: ["Production", "RTU", "Gemcitabine"],
-    summary: "Ce projet montre l’intérêt écologique de la standardisation via des poches industrielles prêtes à l’emploi, avec extrapolation à l’échelle d’une activité réelle de production.",
-    kpis: [
-      { value: "~50%", label: "réduction d’impact" },
-      { value: "3,6 t", label: "CO₂ eq évitées" },
-      { value: "~2000", label: "poches utilisées" }
-    ],
-    details: [
-      { title: "Objectif", text: "Comparer deux modes de production de gemcitabine à dose équivalente selon une logique d’analyse de cycle de vie." },
-      { title: "Résultats clés", text: "Le gain environnemental augmente avec la dose, avec environ 45 à 55% d’économie relative selon les posologies." },
-      { title: "Intérêt", text: "Donne un argument écologique concret à la standardisation et à l’anticipation des préparations." },
-      { title: "Perspectives", text: "Extension à d’autres molécules industrielles prêtes à l’emploi et comparaison avec d’autres modèles de production." }
-    ]
-  },
-  {
-    id: "dose-banding",
-    theme: "Production",
-    title: "Dose-banding et standardisation de la production",
-    short: "Travaux autour de la standardisation des doses anticancéreuses, de l’anticipation des préparations et de leurs impacts organisationnels et écologiques.",
-    status: "En structuration",
-    tags: ["Dose-banding", "Standardisation", "Oncologie"],
-    summary: "Cette thématique regroupe les travaux visant à mieux standardiser la production de chimiothérapies pour sécuriser, anticiper et potentiellement décarboner les préparations.",
-    kpis: [
-      { value: "20–50%", label: "préparations anticipables" },
-      { value: "Noxelia", label: "outil / partenaire" },
-      { value: "à documenter", label: "impact écologique" }
-    ],
-    details: [
-      { title: "Objectif", text: "Montrer l’intérêt de la standardisation des doses sur les plans organisationnel, temporel, économique et environnemental." },
-      { title: "Enjeu", text: "Mieux absorber l’activité, limiter les préparations unitaires évitables et articuler robotisation, standardisation et pilotage intelligent." },
-      { title: "Noxelia", text: "Travail en lien avec Noxelia autour de l’optimisation de la production, de l’anticipation et de la standardisation des chimiothérapies." },
-      { title: "Liens utiles", text: "Voir les ressources externes dans la section Publications pour l’article de présentation et le site de Noxelia." }
-    ]
-  }
-];
+      {
+        id: "optimisation-had",
+        theme: "Pharmacie clinique",
+        title: "Optimisation des prescriptions en HAD",
+        short: "Travail sur la pertinence des prescriptions, l’éco-prescription et la simplification du soin en hospitalisation à domicile.",
+        status: "Valorisé",
+        tags: ["HAD", "Optimisation", "Éco-prescription"],
+        summary: "Ce projet s’intéresse à l’optimisation des prescriptions en HAD : pertinence des traitements, réduction des soins disproportionnés, optimisation des voies d’administration et mise en cohérence avec les contraintes du territoire.",
+        kpis: [
+          { value: ">90%", label: "acceptation" },
+          { value: "terrain", label: "approche" },
+          { value: "clinique", label: "ancrage principal" }
+        ],
+        details: [
+          { title: "Objectif", text: "Montrer ce que l’optimisation des prescriptions peut apporter en pratique dans une unité d’HAD territoriale, au-delà de la seule dimension réglementaire ou théorique." },
+          { title: "Intérêt", text: "Le projet sert de support pour illustrer ce qui peut être fait concrètement sur le territoire en termes d’éco-prescription, d’optimisation des modalités d’administration et de réduction du soin inutile." },
+          { title: "Résultats / message", text: "L’optimisation des prescriptions ne retire pas du soin ; elle retire ce qui n’en est pas, en gardant une lecture individualisée du patient et du parcours." },
+          { title: "Perspectives", text: "Continuer à formaliser les approches reproductibles et à mieux décrire les conditions de mise en œuvre dans d’autres équipes." }
+        ]
+      },
+      {
+        id: "deprescription-had",
+        theme: "Pharmacie clinique",
+        title: "Déprescription : impact économique et écologique en HAD",
+        short: "Travail spécifique sur la déprescription en HAD et ses impacts cliniques, économiques et environnementaux.",
+        status: "Valorisé",
+        tags: ["HAD", "Déprescription", "Impact"],
+        summary: "Ce projet isole la déprescription comme objet de travail à part entière, avec une lecture croisée clinique, économique et écologique des interventions associées.",
+        kpis: [
+          { value: "93%", label: "acceptation" },
+          { value: "~340 kg", label: "CO₂ eq/mois" },
+          { value: "~1250 €", label: "économie/mois" }
+        ],
+        details: [
+          { title: "Objectif", text: "Mesurer l’impact de la déprescription en HAD et montrer qu’elle peut constituer un levier fort sans perdre la logique de soin." },
+          { title: "Résultats clés", text: "Impact favorable clinique, économique et environnemental, avec une forte acceptabilité des interventions proposées et un poids important de la déprescription dans l’impact total observé." },
+          { title: "Projet en cours", text: "Développement d’une échelle Cléo+ intégrant aussi l’impact environnemental, économique et logistique pour compléter l’approche déjà proposée." },
+          { title: "Structuration", text: "Travail en cours de structuration en lien avec d’autres centres experts et avec des patients." }
+        ]
+      },
+      {
+        id: "perfusion-impact",
+        theme: "Pharmacie clinique",
+        title: "Impact écologique des méthodes de perfusion",
+        short: "Comparaison de l’impact écologique de la méthode de perfusion (discontinue / continue, plusieurs types de dispositifs médicaux) en intra-hospitalier et en HAD.",
+        status: "En cours",
+        tags: ["Perfusion", "DM", "HAD", "Intra-hospitalier"],
+        summary: "Projet visant à comparer l’impact écologique de différentes méthodes de perfusion, en tenant compte des dispositifs médicaux utilisés et des contextes de prise en charge.",
+        kpis: [
+          { value: "en cours", label: "état" },
+          { value: "multi-DM", label: "périmètre" },
+          { value: "HAD / intra", label: "contextes" }
+        ],
+        details: [
+          { title: "Objectif", text: "Comparer différentes méthodes de perfusion pour mieux comprendre leurs impacts écologiques, organisationnels et pratiques selon le contexte de soin." },
+          { title: "Enjeu", text: "Sortir d’une vision trop simple de la perfusion en regardant à la fois les dispositifs médicaux, les consommables et l’organisation." },
+          { title: "Approche", text: "Comparaison entre perfusions continues et discontinues, avec plusieurs types de dispositifs médicaux, en intra-hospitalier et en HAD." },
+          { title: "Perspectives", text: "Aider à orienter les choix de pratique quand plusieurs modalités sont possibles sans dégrader la qualité des soins." }
+        ]
+      },
+      {
+        id: "acv-llm",
+        theme: "ACV",
+        title: "Benchmark des LLMs pour les analyses de cycle de vie",
+        short: "Comparaison de plusieurs modèles génératifs face à une méthode de référence pour estimer l’impact environnemental des médicaments.",
+        status: "Exploratoire",
+        tags: ["IA", "ACV", "Benchmark"],
+        summary: "Le projet vise à déterminer si les IA génératives peuvent aider à approcher rapidement des ordres de grandeur en ACV médicamenteuse, sans se substituer à une validation humaine experte.",
+        kpis: [
+          { value: "7", label: "modèles testés" },
+          { value: "11", label: "molécules comparées" },
+          { value: "élevée", label: "variabilité observée" }
+        ],
+        details: [
+          { title: "Objectif", text: "Comparer la performance de plusieurs LLMs à une méthode de référence pour l’estimation d’impact environnemental." },
+          { title: "Message principal", text: "Les LLM peuvent aider au repérage, mais leurs erreurs extrêmes imposent un contrôle humain systématique." },
+          { title: "Intérêt", text: "Permet de réfléchir à l’intégration future d’aides plus rapides dans les outils de prescription ou d’analyse." },
+          { title: "Limite", text: "Forte hétérogénéité selon les molécules, les voies d’administration et la qualité des sources mobilisées." }
+        ]
+      },
+      {
+        id: "retours-had",
+        theme: "Logistique / Dispensation",
+        title: "Retours de médicaments en HAD",
+        short: "Quantification des retours et construction d’un score de criticité pour prioriser les molécules réintégrables sans risque.",
+        status: "En cours",
+        tags: ["Retours", "HAD", "LFSS 2026"],
+        summary: "Ce travail s’intéresse au gaspillage induit par la dispensation hebdomadaire en HAD et propose une méthode de priorisation fondée sur l’impact écologique, économique et clinique.",
+        kpis: [
+          { value: "8573", label: "unités retournées" },
+          { value: "2,5 t", label: "CO₂ eq/mois" },
+          { value: "3215 €", label: "impact mensuel" }
+        ],
+        details: [
+          { title: "Objectif", text: "Sécuriser la gestion des retours et identifier les molécules prioritaires à réintégrer dans un cadre maîtrisé." },
+          { title: "Méthode", text: "Analyse sur un mois, estimation des impacts, catégorisation selon la stabilité et score de criticité." },
+          { title: "Résultats clés", text: "Proposition d’un noyau de molécules prioritaires concentrant une part importante de l’impact économique et carbone." },
+          { title: "Perspectives", text: "Suivi des conditions domicile, automatisation des retours, traçabilité et articulation avec les évolutions réglementaires." }
+        ]
+      },
+      {
+        id: "retrofficine",
+        theme: "Logistique / Dispensation",
+        title: "Rétr’officine",
+        short: "Réorganisation du parcours de dispensation pour limiter les déplacements, renforcer le lien ville-hôpital et sécuriser les traitements.",
+        status: "Déployé",
+        tags: ["Ville-hôpital", "Dispensation", "Territoire"],
+        summary: "Le projet Rétr’officine repense le transfert de soins dans un territoire géographiquement complexe, avec un objectif d’accessibilité, de sécurité et de réduction d’impact environnemental.",
+        kpis: [
+          { value: "45%", label: "adhérence à 1 mois" },
+          { value: "30%", label: "temps PUI réduit" },
+          { value: "12 t", label: "CO₂ eq/an" }
+        ],
+        details: [
+          { title: "Objectif", text: "Faciliter l’accès aux traitements tout en maintenant la continuité clinique entre pharmacie hospitalière, patient et officine." },
+          { title: "Forces", text: "Dimension territoriale, participative et directement transposable à d’autres zones à faible densité." },
+          { title: "Résultats clés", text: "Réduction du temps logistique, amélioration des compétences, diminution des stocks dormants et économies carbone importantes." },
+          { title: "Perspectives", text: "Évaluation de la satisfaction patient et officine, consolidation du modèle et extension progressive." }
+        ]
+      },
+      {
+        id: "chimio-had",
+        theme: "Logistique / Dispensation",
+        title: "Impact écologique, économique et organisationnel du développement d’une filière chimiothérapie HAD",
+        short: "Projet sur le développement d’une filière chimiothérapie HAD avec lecture croisée écologique, économique et organisationnelle.",
+        status: "En cours",
+        tags: ["Chimiothérapie", "HAD", "Organisation", "Territoire"],
+        summary: "Projet en cours visant à mieux comprendre ce que change le développement d’une filière chimiothérapie HAD pour les patients, l’organisation, les coûts et l’impact environnemental.",
+        kpis: [
+          { value: "en cours", label: "état" },
+          { value: "triple", label: "lecture d’impact" },
+          { value: "territorial", label: "ancrage" }
+        ],
+        details: [
+          { title: "Objectif", text: "Évaluer l’intérêt du développement d’une filière chimiothérapie HAD sur les plans écologique, économique et organisationnel." },
+          { title: "Enjeu", text: "Documenter de manière plus fine ce que représente la chimiothérapie HAD pour le territoire, les flux, les transports et la charge organisationnelle." },
+          { title: "Approche", text: "Comparer différentes dimensions du parcours entre prise en charge conventionnelle et HAD, sans réduire la discussion au seul critère environnemental." },
+          { title: "Perspectives", text: "Aider à cadrer les conditions dans lesquelles une filière chimiothérapie HAD est pertinente et soutenable." }
+        ]
+      },
+      {
+        id: "gemcitabine",
+        theme: "Production",
+        title: "Gemcitabine industrielle prête à l’emploi",
+        short: "Comparaison de l’impact environnemental entre poches industrielles prêtes à l’emploi et reconstitution hospitalière à partir de flacons.",
+        status: "Valorisé",
+        tags: ["Production", "RTU", "Gemcitabine"],
+        summary: "Ce projet montre l’intérêt écologique de la standardisation via des poches industrielles prêtes à l’emploi, avec extrapolation à l’échelle d’une activité réelle de production.",
+        kpis: [
+          { value: "~50%", label: "réduction d’impact" },
+          { value: "3,6 t", label: "CO₂ eq évitées" },
+          { value: "~2000", label: "poches utilisées" }
+        ],
+        details: [
+          { title: "Objectif", text: "Comparer deux modes de production de gemcitabine à dose équivalente selon une logique d’analyse de cycle de vie." },
+          { title: "Résultats clés", text: "Le gain environnemental augmente avec la dose, avec environ 45 à 55% d’économie relative selon les posologies." },
+          { title: "Intérêt", text: "Donne un argument écologique concret à la standardisation et à l’anticipation des préparations." },
+          { title: "Perspectives", text: "Extension à d’autres molécules industrielles prêtes à l’emploi et comparaison avec d’autres modèles de production." }
+        ]
+      },
+      {
+        id: "dose-banding",
+        theme: "Production",
+        title: "Dose-banding et standardisation de la production",
+        short: "Travaux autour de la standardisation des doses anticancéreuses, de l’anticipation des préparations et de leurs impacts organisationnels et écologiques.",
+        status: "En structuration",
+        tags: ["Dose-banding", "Standardisation", "Oncologie"],
+        summary: "Cette thématique regroupe les travaux visant à mieux standardiser la production de chimiothérapies pour sécuriser, anticiper et potentiellement décarboner les préparations.",
+        kpis: [
+          { value: "20–50%", label: "préparations anticipables" },
+          { value: "Noxelia", label: "outil / partenaire" },
+          { value: "à documenter", label: "impact écologique" }
+        ],
+        details: [
+          { title: "Objectif", text: "Montrer l’intérêt de la standardisation des doses sur les plans organisationnel, temporel, économique et environnemental." },
+          { title: "Enjeu", text: "Mieux absorber l’activité, limiter les préparations unitaires évitables et articuler robotisation, standardisation et pilotage intelligent." },
+          { title: "Noxelia", text: "Travail en lien avec Noxelia autour de l’optimisation de la production, de l’anticipation et de la standardisation des chimiothérapies." },
+          { title: "Liens utiles", text: "Voir les ressources externes dans la section Publications pour l’article de présentation et le site de Noxelia." }
+        ]
+      }
+    ];
 
     const methods = [
       {
@@ -896,82 +1000,91 @@
     ];
 
     const publications = [
-  {
-    title: "Optimisation des prescriptions en HAD",
-    type: "Vidéo",
-    event: "Hopipharm",
-    year: "2026",
-    project: "Pharmacie clinique",
-    summary: "Intervention sur l’éco-prescription et l’optimisation des prescriptions en HAD.",
-    links: [{ label: "Voir la vidéo", href: "https://mediatheque.synprefh.cyim.com/mediatheque/media.aspx?mediaId=247070&channel=23854" }]
-  },
-  {
-    title: "Déprescrire sans nuire",
-    type: "Support de communication orale",
-    event: "SFPC",
-    year: "2026",
-    project: "Pharmacie clinique",
-    summary: "Travail sur la déprescription en HAD, ses impacts, ses limites et les profils de patients concernés.",
-    links: [{ label: "Télécharger le PDF", href: "#" }]
-  },
-  {
-    title: "Benchmark des LLMs pour des ACV médicamenteuses",
-    type: "Poster",
-    event: "Hopipharm",
-    year: "2026",
-    project: "ACV",
-    summary: "Comparaison de plusieurs modèles d’IA générative pour estimer l’impact environnemental des médicaments.",
-    links: [{ label: "Télécharger le PDF", href: "#" }]
-  },
-  {
-    title: "Retours de médicaments en HAD",
-    type: "Support de communication orale",
-    event: "Hopipharm",
-    year: "2026",
-    project: "Logistique / Dispensation",
-    summary: "Analyse d’impact et score de criticité pour prioriser les retours et préparer des solutions de réintégration.",
-    links: [{ label: "Télécharger le PDF", href: "#" }]
-  },
-  {
-    title: "Rétr’officine",
-    type: "Poster",
-    event: "EAHP",
-    year: "2026",
-    project: "Logistique / Dispensation",
-    summary: "Réorganisation du parcours ville-hôpital pour réduire les déplacements et améliorer l’accès aux traitements.",
-    links: [{ label: "Télécharger le PDF", href: "#" }]
-  },
-  {
-    title: "Gemcitabine prête à l’emploi",
-    type: "Poster",
-    event: "GERPAC / Bergonié",
-    year: "2026",
-    project: "Production",
-    summary: "Comparaison environnementale entre production industrielle prête à l’emploi et reconstitution hospitalière.",
-    links: [{ label: "Télécharger le PDF", href: "#" }]
-  },
-  {
-    title: "Eco-prescription à domicile",
-    type: "Conférence",
-    event: "1e journée d'éco prescriptions de l'ANAP",
-    year: "2026",
-    project: "Pharmacie clinique",
-    summary: "Comment prescrire plus écologiquement en HAD",
-    links: [{ label: "Télécharger le PDF", href: "#" }]
-  },
-  {
-    title: "Noxelia",
-    type: "Liens externes",
-    event: "Standardisation",
-    year: "2026",
-    project: "Production",
-    summary: "Ressources utiles autour de Noxelia et de la standardisation de la production de chimiothérapies.",
-    links: [
-      { label: "Lire l’article", href: "https://madeinmarseille.net/a-la-une-marseille/182553-noxelia-startup-optimise-chimiotherapies-caap-x-amu/" },
-      { label: "Voir le site", href: "https://www.noxelia.com/" }
-    ]
-  }
-];
+      {
+        title: "Optimisation des prescriptions en HAD",
+        type: "Vidéo",
+        event: "Hopipharm",
+        year: "2026",
+        project: "Pharmacie clinique",
+        summary: "Intervention sur l’éco-prescription et l’optimisation des prescriptions en HAD.",
+        links: [{ label: "Voir la vidéo", href: "https://mediatheque.synprefh.cyim.com/mediatheque/media.aspx?mediaId=247070&channel=23854" }]
+      },
+      {
+        title: "Déprescrire sans nuire",
+        type: "Support de communication orale",
+        event: "SFPC",
+        year: "2026",
+        project: "Pharmacie clinique",
+        summary: "Travail sur la déprescription en HAD, ses impacts, ses limites et les profils de patients concernés.",
+        links: [{ label: "Télécharger le PDF", href: "pdf/deprescrire-sans-nuire.pdf" }]
+      },
+      {
+        title: "Eco-prescription à domicile",
+        type: "Conférence",
+        event: "1e journée d'éco prescriptions de l'ANAP",
+        year: "2026",
+        project: "Pharmacie clinique",
+        summary: "Comment prescrire plus écologiquement en HAD.",
+        links: [{ label: "Télécharger le PDF", href: "pdf/anap.pdf" }]
+      },
+      {
+        title: "Transformation territoriale de l’HAD",
+        type: "Conférence",
+        event: "ORPHEM",
+        year: "2026",
+        project: "Pharmacie clinique",
+        summary: "Conférence sur la transformation territoriale de l’HAD et la façon dont différentes problématiques sont gérées sur le terrain.",
+        links: [{ label: "Télécharger le PDF", href: "pdf/orphem.pdf" }]
+      },
+      {
+        title: "Benchmark des LLMs pour des ACV médicamenteuses",
+        type: "Poster",
+        event: "Hopipharm",
+        year: "2026",
+        project: "ACV",
+        summary: "Comparaison de plusieurs modèles d’IA générative pour estimer l’impact environnemental des médicaments.",
+        links: [{ label: "Télécharger le PDF", href: "pdf/acv-llm-benchmark.pdf" }]
+      },
+      {
+        title: "Retours de médicaments en HAD",
+        type: "Support de communication orale",
+        event: "Hopipharm",
+        year: "2026",
+        project: "Logistique / Dispensation",
+        summary: "Analyse d’impact et score de criticité pour prioriser les retours et préparer des solutions de réintégration.",
+        links: [{ label: "Télécharger le PDF", href: "pdf/retours-had.pdf" }]
+      },
+      {
+        title: "Rétr’officine",
+        type: "Poster",
+        event: "EAHP",
+        year: "2026",
+        project: "Logistique / Dispensation",
+        summary: "Réorganisation du parcours ville-hôpital pour réduire les déplacements et améliorer l’accès aux traitements.",
+        links: [{ label: "Télécharger le PDF", href: "pdf/retrofficine.pdf" }]
+      },
+      {
+        title: "Gemcitabine prête à l’emploi",
+        type: "Poster",
+        event: "GERPAC / Bergonié",
+        year: "2026",
+        project: "Production",
+        summary: "Comparaison environnementale entre production industrielle prête à l’emploi et reconstitution hospitalière.",
+        links: [{ label: "Télécharger le PDF", href: "pdf/gemcitabine-rtu.pdf" }]
+      },
+      {
+        title: "Noxelia",
+        type: "Liens externes",
+        event: "Standardisation",
+        year: "2026",
+        project: "Production",
+        summary: "Ressources utiles autour de Noxelia et de la standardisation de la production de chimiothérapies.",
+        links: [
+          { label: "Lire l’article", href: "https://madeinmarseille.net/a-la-une-marseille/182553-noxelia-startup-optimise-chimiotherapies-caap-x-amu/" },
+          { label: "Voir le site", href: "https://www.noxelia.com/" }
+        ]
+      }
+    ];
 
     const themes = ["Tous", ...new Set(projects.map(project => project.theme))];
     let currentTheme = "Tous";
