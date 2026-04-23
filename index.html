@@ -1027,6 +1027,26 @@
         ]
       },
       {
+        id: "optimisation-had",
+        theme: "Stérilisation",
+        title: "Maîtrise de la consommation électrique des laveurs-désinfecteurs, par optimisation du couple température/durée",
+        short: "Quel couple T° / durée pour diminuer la consommation des laveurs désinfecteurs, avec un A0 à 3000s",
+        statuses: ["published"],
+        statusLabels: ["Publié"],
+        tags: ["Stérilisation", "Biomédical"],
+        summary: "Est-ce que, de la même manière que des cycles économiques sur un lave vaisselle, il est possible de déterminer des paramètres de température et durée permettant d'abaisser la consommation électrique sur un laveur désinfecteur?",
+        kpis: [
+          { value: "30%", label: "de réduction de la consommation électrique" },
+          { value: "1000€", label: "d'économisés par an pour 3 laveurs (tarifs électriques de 2022)" }
+        ],
+        details: [
+          { title: "Objectif", text: "Economiser de l'électricité en optimisant des paramètres de fonctionnement." },
+          { title: "Intérêt", text: "Proposer une approche plus écologique de la stérilistion, et proposer une méthodologie reproductible/" },
+          { title: "Limites", text: "Perte de temps (+15%) par rapport au couple précedemment utilisé, pas entendable si activité saturée." },
+          { title: "Perspectives", text: "Abaisser le A0 à 600s pour les opérations non à risque." }
+        ]
+      },
+      {
         id: "deprescription-had",
         theme: "Pharmacie clinique",
         title: "Déprescription : impact économique et écologique en HAD",
@@ -1299,6 +1319,17 @@
           { label: "Télécharger le PDF", href: "pdf/optimisation-prescriptions-had.pdf" }
         ]
       },
+     {
+        title: "Maîtrise de la consommation électrique des laveurs-désinfecteurs, par optimisation du couple température/durée",
+        type: "Publication",
+        event: "Le journal de Pharmacie Clinique",
+        year: "2024",
+        project: "Stérilisation",
+        summary: "Article publié dans un journal national.",
+        links: [
+          { label: "Lien vers l'article", href: "https://www.jle.com/fr/revues/jpc/e-docs/maitrise_de_la_consommation_electrique_des_laveurs_desinfecteurs_par_optimisation_du_couple_temperature_duree_350922/article.phtml" }
+        ]
+      },
       {
         title: "Déprescrire sans nuire",
         type: "Support de communication orale",
@@ -1397,6 +1428,7 @@
       { key: "progress", label: "En cours" },
       { key: "structuring", label: "En structuration" },
       { key: "deployed", label: "Déployé" },
+      { key: "published", label: "Publié" },
       { key: "exploratory", label: "Exploratoire" }
     ];
 
