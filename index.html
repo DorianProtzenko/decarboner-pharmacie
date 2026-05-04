@@ -208,11 +208,83 @@
     }
 
     .panel {
-      padding: 18px;
+      padding: 0;
       max-height: calc(100vh - 120px);
       overflow: auto;
       position: sticky;
       top: 92px;
+    }
+
+    .filters-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      padding: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,252,250,0.94));
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      border-radius: 22px 22px 0 0;
+    }
+
+    .project-list-compact {
+      display: grid;
+      gap: 0;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.82);
+      cursor: pointer;
+      transition: background 0.16s ease, transform 0.16s ease, border-color 0.16s ease;
+    }
+
+    .project-row:hover,
+    .project-row.active {
+      background: linear-gradient(90deg, #f0f8f3, #ffffff);
+    }
+
+    .project-row.active {
+      border-left: 4px solid var(--primary);
+      padding-left: 14px;
+    }
+
+    .project-row h3 {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .project-row-meta {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 650;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .project-row-badges {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      flex-wrap: wrap;
+      max-width: 170px;
+    }
+
+    .project-row .status-badge {
+      padding: 4px 8px;
+      font-size: 0.68rem;
     }
 
     .filter-block + .filter-block { margin-top: 14px; }
@@ -728,8 +800,356 @@
     .card:nth-child(3n)::before { background: linear-gradient(90deg, #7a6ccf, transparent); }
 
 
+
+
+    /* ===== NOS OUTILS / VITRINE PRODUIT ===== */
+    .tools-showcase {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .tool-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 88% 12%, rgba(47,157,116,0.18), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #eef8f2 100%);
+      box-shadow: 0 22px 54px rgba(20, 49, 38, 0.12);
+    }
+
+    .tool-hero::after {
+      content: "";
+      position: absolute;
+      right: -54px;
+      bottom: -54px;
+      width: 210px;
+      height: 210px;
+      border-radius: 48px;
+      background: linear-gradient(135deg, rgba(29,122,86,0.14), rgba(122,108,207,0.08));
+      transform: rotate(14deg);
+      pointer-events: none;
+    }
+
+    .tool-hero h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 3vw, 2.45rem);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+    }
+
+    .tool-lead {
+      max-width: 74ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin: 0;
+    }
+
+    .tool-badges,
+    .tool-actions,
+    .tool-kpis {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .tool-kpi {
+      flex: 1 1 150px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(215,230,221,0.9);
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tool-kpi strong {
+      display: block;
+      font-size: 1.1rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .tool-side {
+      display: grid;
+      gap: 14px;
+    }
+
+    .tool-mini-card {
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #ffffff, #f5fbf7);
+      box-shadow: var(--shadow);
+    }
+
+    .tool-mini-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+      letter-spacing: -0.03em;
+    }
+
+    .tool-mini-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* ===== TRAVAUX VALORISÉS — BIBLIOTHÈQUE INTERACTIVE ===== */
+    .pub-portfolio-shell {
+      display: grid;
+      gap: 18px;
+    }
+
+    .pub-detail-card {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 94% 16%, rgba(47,157,116,0.10), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #f4faf6 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .pub-detail-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+
+    .pub-detail-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .pub-detail-meta,
+    .pub-card-top,
+    .pub-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pub-detail-card h3 {
+      margin: 12px 0 8px;
+      font-size: clamp(1.45rem, 2.7vw, 2.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+    }
+
+    .pub-detail-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 76ch;
+    }
+
+    .pub-detail-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pub-detail-kpi {
+      padding: 13px 14px;
+      border-radius: 17px;
+      border: 1px solid rgba(215,230,221,0.9);
+      background: rgba(255,255,255,0.76);
+    }
+
+    .pub-detail-kpi-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .pub-detail-kpi strong {
+      display: block;
+      margin-bottom: 0;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      font-size: 0.98rem;
+    }
+
+    .pub-detail-side {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.72);
+    }
+
+    .pub-detail-side h4 {
+      margin: 0 0 10px;
+      font-size: .95rem;
+      letter-spacing: -0.02em;
+    }
+
+    .pub-detail-side .pub-actions {
+      margin-top: 12px;
+    }
+
+    .pub-toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.78);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 92px;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .pub-filter-group {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .pub-card {
+      min-height: 185px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border-radius: 22px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      cursor: pointer;
+    }
+
+    .pub-card:hover,
+    .pub-card.active {
+      transform: translateY(-2px);
+      border-color: #b7d7c7;
+      box-shadow: 0 16px 38px rgba(20, 49, 38, 0.11);
+      background: linear-gradient(180deg, #ffffff, #eef8f2);
+    }
+
+    .pub-card h3 {
+      margin: 11px 0 7px;
+      font-size: 1rem;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+    }
+
+    .pub-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.42;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .pub-kind {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eef7f1;
+      color: var(--primary);
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .pub-year-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f1ecff;
+      color: #5b3ea6;
+      font-size: .74rem;
+      font-weight: 900;
+    }
+
+    .pub-project-pill {
+      margin-top: 10px;
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .pub-actions {
+      margin-top: 14px;
+    }
+
+    .pub-primary-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 13px;
+      border-radius: 999px;
+      background: var(--text);
+      color: #fff;
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .pub-secondary-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .pub-card-featured {
+      border-color: #c4dece;
+    }
+
+    .pub-empty {
+      grid-column: 1 / -1;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px dashed var(--border);
+      background: rgba(255,255,255,0.7);
+      color: var(--muted);
+    }
+
+
     @media (max-width: 1024px) {
       .projects-layout,
+      .tools-showcase,
+      .pub-featured-wrap,
       .methods-grid,
       .pub-grid,
       .guide-grid,
@@ -746,7 +1166,14 @@
         overflow: visible;
       }
 
+      .filters-sticky {
+        position: sticky;
+        top: 72px;
+      }
+
       .project-detail .kpis,
+      .pub-detail-inner,
+      .pub-detail-kpis,
       .detail-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -758,10 +1185,14 @@
       .hero { padding-top: 42px; }
       .hero-card { padding: 24px; }
       .project-detail .kpis,
+      .pub-detail-inner,
+      .pub-detail-kpis,
       .detail-grid {
         grid-template-columns: 1fr;
       }
       .section-head { align-items: start; flex-direction: column; }
+      .pub-detail-card, .tool-hero { padding: 22px; }
+      .pub-toolbar { align-items: flex-start; }
     }
   </style>
 </head>
@@ -772,7 +1203,8 @@
       <nav class="nav-links">
         <a href="#projets">Projets</a>
         <a href="#methodologie">Méthodologie</a>
-        <a href="#publications">Publications</a>
+        <a href="#outils">Nos outils</a>
+        <a href="#publications">Travaux valorisés</a>
         <a href="#who">Qui sommes nous</a>
         <a href="#resources">Ressources</a>
         <a href="#apropos">À propos</a>
@@ -808,15 +1240,17 @@
 
         <div class="projects-layout">
           <div class="panel">
-            <div class="filter-block">
-              <span class="filter-label">Thématique</span>
-              <div class="filters" id="themeFilters"></div>
+            <div class="filters-sticky">
+              <div class="filter-block">
+                <span class="filter-label">Thématique</span>
+                <div class="filters" id="themeFilters"></div>
+              </div>
+              <div class="filter-block">
+                <span class="filter-label">Statut</span>
+                <div class="filters" id="statusFilters"></div>
+              </div>
             </div>
-            <div class="filter-block">
-              <span class="filter-label">Statut</span>
-              <div class="filters" id="statusFilters"></div>
-            </div>
-            <div class="cards" id="projectList"></div>
+            <div class="project-list-compact" id="projectList"></div>
           </div>
 
           <article class="project-detail" id="projectDetail">
@@ -870,16 +1304,73 @@
       </div>
     </section>
 
+    <section id="outils" class="section-soft">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Nos outils</h2>
+            <p>Outils numériques développés ou mobilisés dans le cadre des travaux menés en pharmacie hospitalière.</p>
+          </div>
+        </div>
+
+        <div class="tools-showcase">
+          <article class="tool-hero">
+            <div class="tool-badges">
+              <span class="tag">Outil opérationnel</span>
+              <span class="tag">Production de chimiothérapies</span>
+              <span class="tag">Standardisation</span>
+            </div>
+            <h3>Noxelia</h3>
+            <p class="tool-lead">
+              Logiciel d’aide à la standardisation des doses et à l’anticipation de la production de chimiothérapies. L’outil vise à faciliter le dimensionnement des préparations, le suivi de l’activité et l’analyse des volumes produits.
+            </p>
+            <div class="tool-kpis">
+              <div class="tool-kpi"><strong>Dose-banding</strong><span class="small muted">standardisation des doses</span></div>
+              <div class="tool-kpi"><strong>Anticipation</strong><span class="small muted">planification de production</span></div>
+              <div class="tool-kpi"><strong>Dashboard</strong><span class="small muted">suivi de l’activité</span></div>
+            </div>
+            <div class="tool-actions">
+              <a class="btn primary" href="https://www.noxelia.com/" target="_blank" rel="noreferrer">Voir le site</a>
+              <a class="btn" href="https://madeinmarseille.net/a-la-une-marseille/182553-noxelia-startup-optimise-chimiotherapies-caap-x-amu/" target="_blank" rel="noreferrer">Lire l’article</a>
+            </div>
+          </article>
+
+          <aside class="tool-side">
+            <article class="tool-mini-card">
+              <h4>De la recherche au terrain</h4>
+              <p>Noxelia s’inscrit dans les travaux menés sur la standardisation des doses et l’anticipation des préparations en unité de reconstitution.</p>
+            </article>
+            <article class="tool-mini-card">
+              <h4>Objectifs opérationnels</h4>
+              <p>L’outil aide à anticiper l’activité, suivre les volumes préparés et documenter les indicateurs utiles à l’organisation de la production.</p>
+            </article>
+            <article class="tool-mini-card">
+              <h4>Indicateurs suivis</h4>
+              <p>Nombre de préparations, taux de standardisation, activité anticipable, volumes produits et indicateurs médico-économiques ou environnementaux lorsque les données sont disponibles.</p>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section id="publications" class="section-soft">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Publications / résultats valorisés</h2>
-            <p>Posters, vidéos, conférences et supports de communication orale valorisés.</p>
+            <h2>Travaux valorisés</h2>
+            <p>Publications, communications orales, conférences et posters issus des projets menés.</p>
           </div>
         </div>
 
-        <div class="pub-grid" id="pubGrid"></div>
+        <div class="pub-portfolio-shell">
+          <article class="pub-detail-card" id="pubDetail"></article>
+
+          <div class="pub-toolbar">
+            <div class="pub-filter-group" id="pubFilters"></div>
+          </div>
+
+          <div class="pub-grid" id="pubGrid"></div>
+        </div>
       </div>
     </section>
 
@@ -996,10 +1487,6 @@
           <p>
             L’objectif est surtout de partager une démarche, de rendre visibles des projets de terrain et de proposer un support
             de discussion ou de reproduction pour d’autres équipes.
-          </p>
-          <p class="small muted">
-            Contact : <a href="mailto:dorian.protzenko@gmail.com" class="text-link">dorian.protzenko@gmail.com</a>
-          </p>
         </div>
       </div>
     </section>
@@ -1251,14 +1738,13 @@
         summary: "Cette thématique regroupe les travaux visant à mieux standardiser la production de chimiothérapies pour sécuriser, anticiper et diminuer la génération de déchets oncologiques.",
         kpis: [
           { value: "20–50%", label: "préparations anticipables" },
-          { value: "Noxelia", label: "outil / partenaire" },
+          { value: "outil dédié", label: "appui méthodologique" },
           { value: "à documenter", label: "impact écologique" }
         ],
         details: [
           { title: "Objectif", text: "Montrer l’intérêt de la standardisation des doses sur les plans organisationnel, temporel, économique et environnemental." },
           { title: "Enjeu", text: "Mieux absorber l’activité, limiter les préparations unitaires évitables et articuler robotisation, standardisation et pilotage intelligent." },
-          { title: "Noxelia", text: "Travail en lien avec Noxelia autour de l’optimisation de la production, de l’anticipation et de la standardisation des chimiothérapies." },
-          { title: "Liens utiles", text: "Voir les ressources externes dans la section Publications pour l’article de présentation et le site de Noxelia." }
+          { title: "Outil associé", text: "Un outil dédié à la standardisation et à l’anticipation de production est présenté dans la section Nos outils." }
         ]
       }
     ];
@@ -1335,80 +1821,128 @@
     const publications = [
       {
         title: "Optimisation des prescriptions en HAD",
-        type: "Support et captation de communication orale",
+        type: "Communication orale",
         event: "Hopipharm",
         year: "2025",
         project: "Pharmacie clinique",
-        summary: "Intervention sur l’éco-prescription et l’optimisation des prescriptions en HAD.",
+        summary: "Analyse des interventions pharmaceutiques permettant de réduire les prescriptions non pertinentes et les modalités d’administration évitables.",
+        featured: true,
+        featuredReason: "Sélection orale",
+        kpis: [
+          { label: "Acceptation", value: "> 90 % des interventions" },
+          { label: "Levier principal", value: "déprescription et simplification" },
+          { label: "Terrain", value: "HAD territoriale" }
+        ],
         links: [
           { label: "Voir la vidéo", href: "https://mediatheque.synprefh.cyim.com/mediatheque/media.aspx?mediaId=247070&channel=23854" },
           { label: "Télécharger le PDF", href: "pdf/optimisation-prescriptions-had.pdf" },
           { label: "Dépêche APM News", href: "https://www.apmnews.com/nostory?objet=423688" }
         ]
       },
-     {
-        title: "Maîtrise de la consommation électrique des laveurs-désinfecteurs, par optimisation du couple température/durée",
-        type: "Publication",
-        event: "Le journal de Pharmacie Clinique",
+      {
+        title: "Optimisation des cycles de lavage",
+        type: "Article",
+        event: "Journal de Pharmacie Clinique",
         year: "2024",
         project: "Stérilisation",
-        summary: "Article publié dans un journal national.",
+        summary: "Ajustement du couple température/durée des laveurs-désinfecteurs afin de réduire la consommation électrique tout en conservant le niveau de désinfection attendu.",
+        featured: true,
+        featuredReason: "Publication",
+        kpis: [
+          { label: "Consommation électrique", value: "réduction d’environ 30 %" },
+          { label: "Méthode", value: "paramétrage température/durée" },
+          { label: "Intérêt", value: "approche reproductible" }
+        ],
         links: [
-          { label: "Lien vers l'article", href: "https://www.jle.com/fr/revues/jpc/e-docs/maitrise_de_la_consommation_electrique_des_laveurs_desinfecteurs_par_optimisation_du_couple_temperature_duree_350922/article.phtml" }
+          { label: "Lire l’article", href: "https://www.jle.com/fr/revues/jpc/e-docs/maitrise_de_la_consommation_electrique_des_laveurs_desinfecteurs_par_optimisation_du_couple_temperature_duree_350922/article.phtml" }
         ]
       },
       {
-        title: "Déprescrire sans nuire",
-        type: "Support de communication orale",
+        title: "Déprescription en HAD",
+        type: "Communication orale",
         event: "SFPC",
         year: "2026",
         project: "Pharmacie clinique",
-        summary: "Travail sur la déprescription en HAD, ses impacts, ses limites et les profils de patients concernés.",
+        summary: "Étude des situations où la déprescription est pertinente en HAD, avec analyse des bénéfices, des limites et des conditions d’acceptabilité.",
+        featured: true,
+        featuredReason: "Sélection orale",
+        kpis: [
+          { label: "Acceptation", value: "93 % des propositions" },
+          { label: "Impact carbone", value: "environ 340 kg CO₂ eq/mois" },
+          { label: "Analyse", value: "clinique, économique et écologique" }
+        ],
         links: [{ label: "Télécharger le PDF", href: "pdf/deprescrire-sans-nuire.pdf" }]
       },
       {
-        title: "Eco-prescription à domicile",
+        title: "Éco-prescription en HAD",
         type: "Conférence",
-        event: "1e journée d'éco prescriptions de l'ANAP",
+        event: "ANAP",
         year: "2026",
         project: "Pharmacie clinique",
-        summary: "Comment prescrire plus écologiquement en HAD.",
+        summary: "Retour d’expérience sur l’intégration de critères environnementaux dans les décisions thérapeutiques à domicile.",
+        kpis: [
+          { label: "Approche", value: "terrain et organisationnelle" },
+          { label: "Périmètre", value: "prescription à domicile" },
+          { label: "Objectif", value: "réduction du soin évitable" }
+        ],
         links: [{ label: "Télécharger le PDF", href: "pdf/anap.pdf" }]
       },
       {
-        title: "Transformation territoriale de l’HAD",
+        title: "Organisation territoriale de l’HAD",
         type: "Conférence",
         event: "ORPHEM",
         year: "2026",
         project: "Pharmacie clinique",
-        summary: "Conférence sur la transformation territoriale de l’HAD et la façon dont différentes problématiques sont gérées sur le terrain.",
+        summary: "Analyse de l’organisation HAD dans un territoire contraint, entre logistique, continuité clinique et ressources disponibles.",
+        kpis: [
+          { label: "Territoire", value: "zone géographique contrainte" },
+          { label: "Enjeu", value: "coordination ville–hôpital" },
+          { label: "Lecture", value: "clinique et logistique" }
+        ],
         links: [{ label: "Télécharger le PDF", href: "pdf/orphem.pdf" }]
       },
       {
-        title: "Place des équipes pharmaceutiques dans la transition écologique",
-        type: "Présentation",
+        title: "Pharmacie et transition écologique",
+        type: "Conférence",
         event: "Journées Nationales GHT",
         year: "2024",
-        project: "Pharmacie clinique / Transition écologique",
-        summary: "Présentation sur la place des équipes pharmaceutiques dans le travail mené avec les équipes soignantes pour la transition écologique.",
+        project: "Transition écologique",
+        summary: "Présentation du rôle des équipes pharmaceutiques dans la réduction de l’impact environnemental du circuit du médicament.",
+        kpis: [
+          { label: "Cadre", value: "groupement hospitalier" },
+          { label: "Périmètre", value: "circuit du médicament" },
+          { label: "Message", value: "rôle opérationnel des PUI" }
+        ],
         links: [{ label: "Télécharger le PDF", href: "pdf/ght-ecologie.pdf" }]
       },
       {
-        title: "Benchmark des LLMs pour des ACV médicamenteuses",
+        title: "ACV et modèles génératifs",
         type: "Poster",
         event: "Hopipharm",
         year: "2026",
         project: "ACV",
-        summary: "Comparaison de plusieurs modèles d’IA générative pour estimer l’impact environnemental des médicaments.",
+        summary: "Évaluation de modèles d’IA générative pour estimer des ordres de grandeur d’impact environnemental médicamenteux.",
+        kpis: [
+          { label: "Modèles évalués", value: "7 modèles génératifs" },
+          { label: "Résultat principal", value: "forte variabilité des estimations" },
+          { label: "Conclusion", value: "contrôle humain indispensable" }
+        ],
         links: [{ label: "Télécharger le PDF", href: "pdf/acv-llm-benchmark.pdf" }]
       },
       {
-        title: "Retours de médicaments en HAD",
-        type: "Support de communication orale",
+        title: "Retours médicamenteux en HAD",
+        type: "Communication orale",
         event: "Hopipharm",
         year: "2026",
         project: "Logistique / Dispensation",
-        summary: "Analyse d’impact et score de criticité pour prioriser les retours et préparer des solutions de réintégration.",
+        summary: "Quantification des retours de médicaments en HAD et construction d’un score pour prioriser les molécules réintégrables.",
+        featured: true,
+        featuredReason: "Travail primé",
+        kpis: [
+          { label: "Retours observés", value: "8 573 unités" },
+          { label: "Dispensations concernées", value: "53 %" },
+          { label: "Impact mensuel", value: "2,5 t CO₂ eq et 3 215 €" }
+        ],
         links: [{ label: "Télécharger le PDF", href: "pdf/retours-had.pdf" }]
       },
       {
@@ -1417,32 +1951,34 @@
         event: "EAHP",
         year: "2026",
         project: "Logistique / Dispensation",
-        summary: "Réorganisation du parcours ville-hôpital pour réduire les déplacements et améliorer l’accès aux traitements.",
+        summary: "Réorganisation du circuit ville–hôpital pour limiter les déplacements des patients et sécuriser la continuité thérapeutique.",
+        featured: true,
+        featuredReason: "Travail primé",
+        kpis: [
+          { label: "Objectif", value: "réduire les déplacements" },
+          { label: "Organisation", value: "coordination ville–hôpital" },
+          { label: "Modèle", value: "territorial et reproductible" }
+        ],
         links: [{ label: "Télécharger le PDF", href: "pdf/retrofficine.pdf" }]
       },
       {
         title: "Gemcitabine prête à l’emploi",
-        type: "Poster et communication orale",
-        event: "GERPAC / Bergonié",
-        year: "2026",
+        type: "Communication orale",
+        event: "GERPAC",
+        year: "2025",
         project: "Production",
-        summary: "Comparaison environnementale entre production industrielle prête à l’emploi et reconstitution hospitalière.",
+        summary: "Comparaison environnementale entre reconstitution hospitalière et formes prêtes à l’emploi de gemcitabine.",
+        featured: true,
+        featuredReason: "Sélection orale",
+        kpis: [
+          { label: "Impact carbone", value: "réduction d’environ 50 %" },
+          { label: "Gain observé", value: "3,6 t CO₂ eq évitées" },
+          { label: "Comparaison", value: "prêt à l’emploi vs reconstitution" }
+        ],
         links: [
           { label: "Poster", href: "pdf/gemcitabine-rtu.pdf" },
           { label: "Communication orale", href: "pdf/gemcitabine-rtu2.pdf" },
           { label: "Dépêche PharmacyUpdateOnline", href: "https://pharmacyupdate.online/2025/11/rtu-gemcitabine-reduces-the-environmental-impact-of-chemotherapy/?utm_source=linkedin&utm_medium=social&utm_campaign=organic" }
-        ]
-      },
-      {
-        title: "Noxelia",
-        type: "Liens externes",
-        event: "Standardisation",
-        year: "2026",
-        project: "Production",
-        summary: "Outil digital de mise en place et suivi de production standardisée de chimiothérapies",
-        links: [
-          { label: "Lire l’article", href: "https://madeinmarseille.net/a-la-une-marseille/182553-noxelia-startup-optimise-chimiotherapies-caap-x-amu/" },
-          { label: "Voir le site", href: "https://www.noxelia.com/" }
         ]
       }
     ];
@@ -1462,6 +1998,7 @@
 
     let currentTheme = "Tous";
     let currentStatus = "all";
+    let currentProjectId = null;
 
     const themeFiltersEl = document.getElementById("themeFilters");
     const statusFiltersEl = document.getElementById("statusFilters");
@@ -1476,7 +2013,11 @@
     const sourcesCarouselEl = document.getElementById("sourcesCarousel");
     const sourcesDotsEl = document.getElementById("sourcesDots");
     const pubGridEl = document.getElementById("pubGrid");
+    const pubFiltersEl = document.getElementById("pubFilters");
+    const pubDetailEl = document.getElementById("pubDetail");
     let currentSourceIndex = 0;
+    let currentPubType = "Tous";
+    let currentPubTitle = null;
 
     function statusBadgeClass(status) {
       const map = {
@@ -1535,35 +2076,41 @@
 
       filtered.forEach(project => {
         const article = document.createElement("article");
-        article.className = "card";
+        article.className = `project-row ${project.id === currentProjectId ? "active" : ""}`;
+        const metaTags = project.tags.slice(0, 2).join(" · ");
         article.innerHTML = `
-          <div class="tag-row">
-            <span class="tag">${project.theme}</span>
+          <div>
+            <h3 title="${project.title}">${project.title}</h3>
+            <div class="project-row-meta">${project.theme}${metaTags ? " · " + metaTags : ""}</div>
           </div>
-          <div class="status-row">
-            ${project.statuses.map((status, index) => `<span class="status-badge ${statusBadgeClass(status)}">${project.statusLabels[index]}</span>`).join("")}
+          <div class="project-row-badges">
+            ${project.statuses.slice(0, 2).map((status, index) => `<span class="status-badge ${statusBadgeClass(status)}">${project.statusLabels[index]}</span>`).join("")}
           </div>
-          <h3>${project.title}</h3>
-          <p>${project.short}</p>
-          <div class="meta">${project.tags.map(tag => `<span>${tag}</span>`).join("")}</div>
         `;
         article.addEventListener("click", () => renderDetail(project));
         projectListEl.appendChild(article);
       });
 
       if (filtered.length > 0) {
-        renderDetail(filtered[0]);
+        const selected = filtered.find(project => project.id === currentProjectId) || filtered[0];
+        renderDetail(selected, false);
       } else {
+        currentProjectId = null;
         detailTagsEl.innerHTML = "";
         detailStatusesEl.innerHTML = "";
         detailTitleEl.textContent = "Aucun projet pour ce filtre";
-        detailSummaryEl.textContent = "Essaie une autre combinaison de filtres.";
+        detailSummaryEl.textContent = "Aucun projet ne correspond à cette combinaison de filtres.";
         detailKpisEl.innerHTML = "";
         detailGridEl.innerHTML = "";
       }
     }
 
-    function renderDetail(project) {
+    function renderDetail(project, shouldScroll = true) {
+      currentProjectId = project.id;
+      document.querySelectorAll(".project-row").forEach(row => row.classList.remove("active"));
+      const rows = Array.from(document.querySelectorAll(".project-row"));
+      const selectedRow = rows.find(row => row.querySelector("h3")?.textContent === project.title);
+      if (selectedRow) selectedRow.classList.add("active");
       detailTagsEl.innerHTML = `<span class="tag">${project.theme}</span>`;
       detailStatusesEl.innerHTML = project.statuses.map((status, index) => `<span class="status-badge ${statusBadgeClass(status)}">${project.statusLabels[index]}</span>`).join("");
       detailTitleEl.textContent = project.title;
@@ -1571,7 +2118,7 @@
       detailKpisEl.innerHTML = project.kpis.map(kpi => `<div class="kpi"><strong>${kpi.value}</strong><span class="muted small">${kpi.label}</span></div>`).join("");
       detailGridEl.innerHTML = project.details.map(block => `<div class="detail-block"><h4>${block.title}</h4><p>${block.text}</p></div>`).join("");
 
-      if (window.innerWidth <= 1024) {
+      if (shouldScroll && window.innerWidth <= 1024) {
         document.getElementById("projectDetail").scrollIntoView({
           behavior: "smooth",
           block: "start"
@@ -1641,21 +2188,123 @@
     }
 
 
-    function renderPublications() {
-      pubGridEl.innerHTML = publications.map(pub => `
-        <article class="pub-card">
-          <div class="tag-row">
-            <span class="tag">${pub.type}</span>
-            <span class="tag">${pub.event} ${pub.year}</span>
+    function publicationTypeLabel(type) {
+      if (type.includes("Communication orale") || type.includes("communication orale") || type.includes("Support")) return "Communication orale";
+      if (type.includes("Conférence")) return "Conférence";
+      if (type.includes("Poster")) return "Poster";
+      if (type.includes("Publication") || type.includes("Article")) return "Article";
+      return type;
+    }
+
+    function getPublicationTypes() {
+      const order = ["Tous", "Communication orale", "Conférence", "Poster", "Article"];
+      const existing = new Set(publications.map(pub => publicationTypeLabel(pub.type)));
+      return order.filter(type => type === "Tous" || existing.has(type));
+    }
+
+    function getPublicationKpis(pub) {
+      if (Array.isArray(pub.kpis) && pub.kpis.length) return pub.kpis;
+      return [
+        { label: "Année", value: pub.year },
+        { label: "Axe", value: pub.project.split("/")[0].trim() },
+        { label: "Cadre", value: pub.event }
+      ];
+    }
+
+    function renderPublicationDetail(pub) {
+      if (!pub) return;
+      currentPubTitle = pub.title;
+      const kpis = getPublicationKpis(pub);
+      const primaryLink = pub.links[0];
+
+      pubDetailEl.innerHTML = `
+        <div class="pub-detail-inner">
+          <div>
+            <div class="pub-detail-meta">
+              <span class="pub-kind">${publicationTypeLabel(pub.type)}</span>
+              <span class="pub-year-pill">${pub.event} · ${pub.year}</span>
+              ${pub.featuredReason ? `<span class="tag">${pub.featuredReason}</span>` : ""}
+            </div>
+            <h3>${pub.title}</h3>
+            <p>${pub.summary}</p>
+            <div class="pub-detail-kpis">
+              ${kpis.map(kpi => `<div class="pub-detail-kpi"><span class="pub-detail-kpi-label">${kpi.label}</span><strong>${kpi.value}</strong></div>`).join("")}
+            </div>
           </div>
-          <h3>${pub.title}</h3>
-          <p>${pub.summary}</p>
-          <div class="meta"><span>Projet : ${pub.project}</span></div>
-          <div class="link-row">
-            ${pub.links.map(link => `<a class="text-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`).join("")}
+          <div class="pub-detail-side">
+            <h4>Supports disponibles</h4>
+            <p class="small muted">${pub.project}</p>
+            <div class="pub-actions">
+              ${primaryLink ? `<a class="pub-primary-link" href="${primaryLink.href}" target="_blank" rel="noreferrer">Voir le travail</a>` : ""}
+              ${pub.links.slice(1, 3).map(link => `<a class="pub-secondary-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`).join("")}
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.querySelectorAll(".pub-card").forEach(card => {
+        card.classList.toggle("active", card.dataset.title === pub.title);
+      });
+    }
+
+    function renderPublicationFilters() {
+      pubFiltersEl.innerHTML = getPublicationTypes().map(type => `
+        <button class="chip ${type === currentPubType ? "active" : ""}" data-type="${type}">${type}</button>
+      `).join("");
+
+      pubFiltersEl.querySelectorAll(".chip").forEach(button => {
+        button.addEventListener("click", () => {
+          currentPubType = button.dataset.type;
+          currentPubTitle = null;
+          renderPublicationFilters();
+          renderPublications();
+        });
+      });
+    }
+
+    function getFilteredPublications() {
+      return publications
+        .filter(pub => currentPubType === "Tous" || publicationTypeLabel(pub.type) === currentPubType)
+        .sort((a, b) => Number(b.year) - Number(a.year) || a.title.localeCompare(b.title));
+    }
+
+    function renderPublications() {
+      const filtered = getFilteredPublications();
+
+      if (!filtered.length) {
+        pubGridEl.innerHTML = `<div class="pub-empty">Aucun travail pour ce filtre.</div>`;
+        pubDetailEl.innerHTML = `<div class="pub-detail-inner"><div><h3>Aucun travail sélectionné</h3><p>Aucun travail ne correspond à ce filtre.</p></div></div>`;
+        return;
+      }
+
+      const selected = filtered.find(pub => pub.title === currentPubTitle) || filtered[0];
+      currentPubTitle = selected.title;
+
+      pubGridEl.innerHTML = filtered.map(pub => `
+        <article class="pub-card ${pub.featured ? "pub-card-featured" : ""} ${pub.title === currentPubTitle ? "active" : ""}" data-title="${pub.title}">
+          <div>
+            <div class="pub-card-top">
+              <span class="pub-kind">${publicationTypeLabel(pub.type)}</span>
+              <span class="pub-year-pill">${pub.year}</span>
+            </div>
+            <h3>${pub.title}</h3>
+            <p>${pub.summary}</p>
+            <div class="pub-project-pill">${pub.event} · ${pub.project}</div>
           </div>
         </article>
       `).join("");
+
+      pubGridEl.querySelectorAll(".pub-card").forEach(card => {
+        card.addEventListener("click", () => {
+          const pub = publications.find(item => item.title === card.dataset.title);
+          renderPublicationDetail(pub);
+          if (window.innerWidth <= 1024) {
+            pubDetailEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      renderPublicationDetail(selected);
     }
 
     renderThemeFilters();
@@ -1663,6 +2312,7 @@
     renderProjects();
     renderSources();
     renderMethods();
+    renderPublicationFilters();
     renderPublications();
   </script>
 </body>
