@@ -1146,6 +1146,36 @@
     }
 
 
+
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+    }
+
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+
+    .lang-switch button.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(20, 49, 38, 0.10);
+    }
+
     @media (max-width: 1024px) {
       .projects-layout,
       .tools-showcase,
@@ -1208,6 +1238,10 @@
         <a href="#who">Qui sommes nous</a>
         <a href="#resources">Ressources</a>
         <a href="#apropos">À propos</a>
+        <div class="lang-switch" aria-label="Choix de langue">
+          <button type="button" id="btn-fr">FR</button>
+          <button type="button" id="btn-en">EN</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -1487,6 +1521,10 @@
           <p>
             L’objectif est surtout de partager une démarche, de rendre visibles des projets de terrain et de proposer un support
             de discussion ou de reproduction pour d’autres équipes.
+          </p>
+          <p class="small muted">
+            Contact : <a href="mailto:dorian.protzenko@gmail.com" class="text-link">dorian.protzenko@gmail.com</a>
+          </p>
         </div>
       </div>
     </section>
@@ -1501,7 +1539,7 @@
   </footer>
 
   <script>
-    const projects = [
+    const projectsFr = [
       {
         id: "optimisation-had",
         theme: "Pharmacie clinique",
@@ -1748,8 +1786,255 @@
         ]
       }
     ];
+    const projectsEn = [
+      {
+        id: "optimisation-had",
+        theme: "Clinical pharmacy",
+        title: "Prescription optimisation in Hospital-at-Home",
+        short: "Work on prescription appropriateness, eco-prescribing and simplification of care in Hospital-at-Home.",
+        statuses: ["awarded", "valued", "publication"],
+        statusLabels: ["Awarded", "Presented", "Under publication"],
+        tags: ["HAD", "Optimisation", "Eco-prescribing"],
+        summary: "This project focuses on prescription optimisation in Hospital-at-Home: treatment appropriateness, reduction of disproportionate care, route-of-administration optimisation and alignment with territorial constraints.",
+        kpis: [
+          { value: ">90%", label: "acceptance" },
+          { value: "> 3 tonnes", label: "CO₂ eq/an" },
+          { value: "clinique", label: "main focus" }
+        ],
+        details: [
+          { title: "Objective", text: "Show what prescription optimisation can bring in practice within a territorial Hospital-at-Home unit, beyond regulatory or theoretical considerations." },
+          { title: "Rationale", text: "The project illustrates what can be done in practice at territorial level in terms of eco-prescribing, optimisation of administration modalities and reduction of unnecessary care." },
+          { title: "Results / message", text: "Prescription optimisation, particularly through discontinuation and reduced use of injectable routes, can substantially reduce costs and the environmental impact of care." },
+          { title: "Perspectives", text: "Continue formalising reproducible approaches and better describe the conditions required for implementation in other teams. Develop new tools to rate the environmental impact of pharmaceutical interventions." }
+        ]
+      },
+      {
+        id: "optimisation-had",
+        theme: "Sterilisation",
+        title: "Control of washer-disinfector electricity use by optimising temperature/time settings",
+        short: "Which temperature/time pair can reduce washer-disinfector electricity use while maintaining A0 at 3000 s?",
+        statuses: ["published"],
+        statusLabels: ["Published"],
+        tags: ["Sterilisation", "Biomedical"],
+        summary: "Can temperature and duration parameters be adjusted to reduce electricity consumption in washer-disinfectors while preserving the expected disinfection performance?",
+        kpis: [
+          { value: "30%", label: "electricity use reduction" },
+          { value: "1000€", label: "saved per year for three washers, based on 2022 electricity tariffs" }
+        ],
+        details: [
+          { title: "Objective", text: "Save electricity by optimising operating parameters." },
+          { title: "Rationale", text: "Propose a lower-impact approach to sterilisation and a reproducible method." },
+          { title: "Limitations", text: "Longer cycle time (+15%) compared with the previously used settings, which may be difficult in saturated activity." },
+          { title: "Perspectives", text: "Assess lowering A0 to 600 s for lower-risk operations." }
+        ]
+      },
+      {
+        id: "deprescription-had",
+        theme: "Clinical pharmacy",
+        title: "Deprescribing in Hospital-at-Home: economic and environmental impact",
+        short: "Specific work on deprescribing in Hospital-at-Home and its clinical, economic and environmental impacts.",
+        statuses: ["valued", "publication"],
+        statusLabels: ["Presented", "Under publication"],
+        tags: ["HAD", "Deprescribing", "Impact"],
+        summary: "This project treats deprescribing as a distinct field of work, with a combined clinical, economic and environmental assessment of associated interventions.",
+        kpis: [
+          { value: "93%", label: "acceptance" },
+          { value: "~340 kg", label: "CO₂ eq/mois" },
+          { value: "~1250 €", label: "monthly savings" }
+        ],
+        details: [
+          { title: "Objective", text: "Measure the impact of deprescribing in Hospital-at-Home and show that it can be a strong lever without losing the care rationale." },
+          { title: "Key results", text: "Favourable clinical, economic and environmental impact, with high acceptance of proposed interventions and a substantial contribution of deprescribing to the total observed impact. Reflection on how deprescribing is perceived by patients and on practical barriers." },
+          { title: "Ongoing project", text: "Development of a Cleo+ scale also integrating environmental, economic and logistical impact to complement the existing approach." },
+          { title: "Structuring", text: "Structuring work is ongoing with other expert centres and patients." }
+        ]
+      },
+      {
+        id: "outil-cleo",
+        theme: "Clinical pharmacy",
+        title: "Development of a CLEO-based scale to better value deprescribing pharmaceutical interventions",
+        short: "Development of a tool to value the environmental and organisational impact of a pharmaceutical intervention",
+        statuses: ["progress"],
+        statusLabels: ["Ongoing"],
+        tags: ["Deprescribing", "Impact"],
+        summary: "This project, developed with other specialists, has two parts: grouping pharmaceutical interventions into broad classes, then assigning an average impact to each class.",
+        kpis: [
+          { value: "environmental impact", label: "rating pharmaceutical interventions according to class and average impact" },
+          { value: "economic impact", label: "similar method" },
+          { value: "organisational impact", label: "according to benefit (autonomy, fewer IV procedures, fewer nurse visits)" }
+        ],
+        details: [
+          { title: "Objective", text: "Provide an additional approach beyond iatrogenic-risk impact to better value deprescribing and care optimisation work." },
+          { title: "Key results", text: "Prototype developed; concept validation is ongoing before consolidating the data at a larger scale." },
+          { title: "Expected timeline", text: "First presentation planned in 2027." }
+        ]
+      },
+      {
+        id: "perfusion-impact",
+        theme: "Clinical pharmacy",
+        title: "Environmental impact of infusion methods",
+        short: "Comparison of the environmental impact of infusion methods (intermittent / continuous, several medical devices) in hospital and Hospital-at-Home settings.",
+        statuses: ["progress"],
+        statusLabels: ["Ongoing"],
+        tags: ["Perfusion", "DM", "HAD", "Intra-hospitalier"],
+        summary: "Project comparing the environmental impact of different infusion methods, accounting for medical devices and care settings.",
+        kpis: [
+          { value: "ongoing", label: "status" },
+          { value: "multi-DM", label: "scope" },
+          { value: "HAD / intra", label: "settings" }
+        ],
+        details: [
+          { title: "Objective", text: "Compare different infusion methods to better understand their environmental, organisational and practical impacts depending on the care setting." },
+          { title: "Challenge", text: "Issue local recommendations on infusion modalities for several antibiotics and dosing regimens." },
+          { title: "Approach", text: "Several infusion methods are available in our hospital: intermittent infusion with bags or continuous infusion using syringe pumps, ambulatory pumps, elastomeric devices or ANAPA. Stability differs across medicines, and 24-hour continuous approaches could reduce costs and environmental footprint when clinically appropriate." },
+          { title: "Perspectives", text: "Help guide practice when several modalities are possible without lowering care quality." }
+        ]
+      },
+            {
+        id: "IA-logistique",
+        theme: "Logistics / Dispensing",
+        title: "Improving order management using predictive AI models (ARIMA)",
+        short: "Could a time-series machine learning model help order better quantities of medicines and medical devices?",
+        statuses: ["progress"],
+        statusLabels: ["Ongoing"],
+        tags: ["Perfusion", "DM", "HAD", "Intra-hospitalier"],
+        summary: "Development of ARIMA time-series models and evaluation of their ability to predict health product consumption: first applied to standardised chemotherapy bags, then extended to medicines and medical devices.",
+        kpis: [
+          { value: "ongoing", label: "status"}
+        ],
+        details: [
+          { title: "Initial results", text: "Limitationd value on small datasets, moderate performance on chemotherapy flows, and improved performance with mixed AI + heuristic models. Extension to broader medicine flows planned from mid-2026."}
+        ]
+      },
+      {
+        id: "acv-llm",
+        theme: "ACV",
+        title: "Benchmarking LLMs for life-cycle assessment",
+        short: "Comparison of several generative models against a reference method for estimating the environmental impact of medicines.",
+        statuses: ["exploratory"],
+        statusLabels: ["Exploratory"],
+        tags: ["IA", "ACV", "Benchmark"],
+        summary: "This project assesses whether generative AI can rapidly approximate orders of magnitude in medicines LCA, without replacing expert human validation.",
+        kpis: [
+          { value: "7", label: "models tested" },
+          { value: "11", label: "molecules compared" },
+          { value: "high", label: "observed variability" }
+        ],
+        details: [
+          { title: "Objective", text: "Compare the performance of several LLMs against a reference method for environmental impact estimation." },
+          { title: "Main message", text: "LLMs may help with screening, but extreme errors require systematic human review." },
+          { title: "Rationale", text: "Supports reflection on future integration of faster aids into prescribing or analysis tools." },
+          { title: "Limitation", text: "High heterogeneity depending on medicines, administration routes and the quality of sources used." }
+        ]
+      },
+      {
+        id: "retours-had",
+        theme: "Logistics / Dispensing",
+        title: "Medicine returns in Hospital-at-Home",
+        short: "Quantification of medicine returns and development of a criticality score to prioritise safely reintegrable medicines.",
+        statuses: ["progress", "deployed"],
+        statusLabels: ["Ongoing", "Implemented"],
+        tags: ["Retours", "HAD", "LFSS 2026"],
+        summary: "This work examines waste generated by weekly dispensing in Hospital-at-Home and proposes a prioritisation method based on environmental, economic and clinical impact.",
+        kpis: [
+          { value: "8573", label: "units returned" },
+          { value: "53", label: "% of dispensings returned" },
+          { value: "2,5 t", label: "CO₂ eq/mois" },
+          { value: "3215 €", label: "impact mensuel" }
+        ],
+        details: [
+          { title: "Objective", text: "Secure return management and identify priority medicines for controlled reintegration." },
+          { title: "Method", text: "One-month assessment, impact estimation, stability-based categorisation and criticality scoring." },
+          { title: "Key results", text: "Identification of a core group of priority medicines concentrating a substantial share of economic and carbon impact, with low reintegration risk." },
+          { title: "Perspectives", text: "Monitoring of home storage conditions, automation of returns, traceability and alignment with regulatory developments." }
+        ]
+      },
+      {
+        id: "retrofficine",
+        theme: "Logistics / Dispensing",
+        title: "Retrofficine",
+        short: "Reorganisation of the dispensing pathway to limit travel, strengthen city-hospital links and secure treatment continuity.",
+        statuses: ["deployed", "awarded"],
+        statusLabels: ["Implemented", "Awarded"],
+        tags: ["city-hospital", "Dispensation", "Territory"],
+        summary: "Retrofficine rethinks care transfer in a geographically complex territory, with objectives of accessibility, safety and lower environmental impact.",
+        kpis: [
+          { value: "45%", label: "one-month adherence" },
+          { value: "30%", label: "reduced hospital pharmacy time" },
+          { value: "12 t", label: "CO₂ eq/an" }
+        ],
+        details: [
+          { title: "Objective", text: "Facilitate access to treatments while maintaining clinical continuity between hospital pharmacy, patient and community pharmacy." },
+          { title: "Strengths", text: "Territorial and participatory dimension, directly transferable to other low-density areas." },
+          { title: "Key results", text: "Reduced logistics time, improved competencies, lower dormant stock and substantial carbon savings." },
+          { title: "Perspectives", text: "Evaluation of patient and community-pharmacy satisfaction, model consolidation and progressive extension." }
+        ]
+      },
+      {
+        id: "chimio-had",
+        theme: "Logistics / Dispensing",
+        title: "Environmental, economic and organisational impact of developing a chemotherapy Hospital-at-Home pathway",
+        short: "Project on the development of a chemotherapy Hospital-at-Home pathway with environmental, economic and organisational assessment.",
+        statuses: ["progress"],
+        statusLabels: ["Ongoing"],
+        tags: ["Chemotherapy", "HAD", "Organisation", "Territory"],
+        summary: "Ongoing project assessing what a chemotherapy Hospital-at-Home pathway changes for patients, organisation, costs and environmental impact.",
+        kpis: [
+          { value: "ongoing", label: "status" },
+          { value: "triple", label: "lecture d’impact" },
+          { value: "territorial", label: "ancrage" }
+        ],
+        details: [
+          { title: "Objective", text: "Assess the value of developing a chemotherapy Hospital-at-Home pathway from environmental, economic and organisational perspectives." },
+          { title: "Challenge", text: "Document more precisely what chemotherapy Hospital-at-Home represents for the territory, flows, transport and organisational workload." },
+          { title: "Approach", text: "Compare different pathway dimensions between conventional care and Hospital-at-Home without reducing the discussion to environmental criteria alone." },
+          { title: "Perspectives", text: "Help define the conditions under which a chemotherapy Hospital-at-Home pathway is relevant and sustainable." }
+        ]
+      },
+      {
+        id: "gemcitabine",
+        theme: "Production",
+        title: "Ready-to-use industrial gemcitabine",
+        short: "Comparison of environmental impact between industrial ready-to-use bags and hospital reconstitution from vials.",
+        statuses: ["valued"],
+        statusLabels: ["Presented"],
+        tags: ["Production", "RTU", "Gemcitabine"],
+        summary: "This project shows the environmental value of standardisation through ready-to-use industrial bags, extrapolated to real-world production activity.",
+        kpis: [
+          { value: "~50%", label: "impact reduction" },
+          { value: "3,6 t", label: "CO₂ eq avoided" },
+          { value: "~2000", label: "bags used" }
+        ],
+        details: [
+          { title: "Objective", text: "Compare two gemcitabine production modes at equivalent dose using a life-cycle assessment approach." },
+          { title: "Key results", text: "The environmental gain increases with dose, with approximately 45% to 55% relative reduction depending on dose." },
+          { title: "Rationale", text: "Provides a concrete environmental argument for standardisation and anticipation of preparations." },
+          { title: "Perspectives", text: "Extension to other industrial ready-to-use medicines and comparison with other production models." }
+        ]
+      },
+      {
+        id: "dose-banding",
+        theme: "Production",
+        title: "Dose banding and production standardisation",
+        short: "Work on anticancer dose standardisation, anticipation of preparations and their organisational and environmental impacts.",
+        statuses: ["structuring"],
+        statusLabels: ["Structuring"],
+        tags: ["Dose-banding", "Standardisation", "Oncology"],
+        summary: "This theme brings together work aimed at standardising chemotherapy production to improve safety, anticipation and reduction of oncology waste.",
+        kpis: [
+          { value: "20–50%", label: "anticipatable preparations" },
+          { value: "dedicated tool", label: "methodological support" },
+          { value: "to be documented", label: "environmental impact" }
+        ],
+        details: [
+          { title: "Objective", text: "Demonstrate the value of dose standardisation from organisational, time-related, economic and environmental perspectives." },
+          { title: "Challenge", text: "Better absorb activity, limit avoidable unit preparations and articulate robotics, standardisation and intelligent steering." },
+          { title: "Associated tool", text: "A dedicated tool for standardisation and production anticipation is presented in the Our tools section." }
+        ]
+      }
+    ];
 
-    const sources = [
+    const sourcesFr = [
       {
         title: "Carebone®",
         intro: "Outil intéressant pour regarder l’ensemble du circuit du médicament et replacer le soin dans une logique plus globale d’organisation.",
@@ -1781,8 +2066,40 @@
         limits: ["Méthodes de calcul pas toujours reproductibles d’une ACV à l’autre"]
       }
     ];
+    const sourcesEn = [
+      {
+        title: "Carebone®",
+        intro: "Useful tool for examining the full medicines pathway and placing care within a broader organisational framework.",
+        strengths: ["Open access", "Allows LCA calculation for medical devices", "Useful to complement a medicines-only perspective"],
+        limits: ["Depends on the assumptions used", "Less straightforward to use rapidly for highly focused projects", "Does not include marketing in its LCA"]
+      },
+      {
+        title: "Ecovamed®",
+        intro: "Useful reference for estimating medicine impact up to delivery to the hospital pharmacy, including marketing-related impact.",
+        strengths: ["Quick to use", "Useful for comparing trends", "Well suited to routine applied projects"],
+        limits: ["Does not cover the full care chain on its own", "May need to be supplemented with other sources", "Not suitable for publication without an agreed dissemination framework"]
+      },
+      {
+        title: "YewMaker / NHS",
+        intro: "Useful references to complement estimates and compare results with other healthcare frameworks.",
+        strengths: ["Provides a complementary perspective", "Useful for comparing orders of magnitude", "Avoids relying on a single reference source"],
+        limits: ["Sometimes imperfectly transferable to the French context", "Data should be interpreted cautiously", "Not always directly usable as-is"]
+      },
+      {
+        title: "ADEME — destruction",
+        intro: "Source used to estimate the impact of disposal, particularly for returns, unused leftovers and waste scenarios.",
+        strengths: ["Useful for documenting the downstream part of the pathway", "Allows disposal to be included in the analysis", "Complements product-centred tools"],
+        limits: ["Requires explicit assumptions on weights and pharmaceutical forms", "Simplified approach when real-world data are unavailable", "To be refined when more precise field data become available"]
+      },
+      {
+        title: "HealthcareLCA",
+        intro: "LCA reference resource in healthcare.",
+        strengths: ["Provides more explicit LCA work on selected products"],
+        limits: ["Calculation methods are not always reproducible from one LCA to another"]
+      }
+    ];
 
-    const methods = [
+    const methodsFr = [
       {
         title: "Approche comparative des référentiels",
         intro: "Nous croisons plusieurs sources selon la question posée : médicament, dispositif médical, destruction, logistique ou comparaison d’ordres de grandeur.",
@@ -1802,23 +2119,28 @@
         limits: ["Reste dépendant de données indirectes", "Peut sous- ou surestimer certaines situations", "Doit être révisé dès qu’une donnée locale plus robuste est disponible"]
       }
     ];
-
-    const wasteRows = [
-      ["Comprimé / gélule (1 alvéole blister)", "1,5", "0,5", "2", "0,943", "1,886"],
-      ["Sachet-dose poudre", "1", "10", "11", "0,943", "10,373"],
-      ["Ampoule verre 5 mL", "10", "5", "15", "0,943", "14,145"],
-      ["Ampoule verre 10 mL", "12", "10", "22", "0,943", "20,746"],
-      ["Flacon verre 10 mL", "25", "10", "35", "0,943", "33,005"],
-      ["Flacon verre 50 mL", "70", "50", "120", "0,943", "113,16"],
-      ["Flacon verre 100 mL", "110", "100", "210", "0,943", "198,03"],
-      ["Seringue préremplie 5 mL", "15", "5", "20", "0,943", "18,86"],
-      ["Poche IV 100 mL", "25", "100", "125", "0,943", "117,875"],
-      ["Poche IV 250 mL", "35", "250", "285", "0,943", "268,755"],
-      ["Poche IV 500 mL", "45", "500", "545", "0,943", "513,935"],
-      ["Poche IV 1 L", "60", "1000", "1060", "0,943", "999,58"]
+    const methodsEn = [
+      {
+        title: "Comparative approach to reference sources",
+        intro: "We combine several sources depending on the question: medicine, medical device, disposal, logistics or order-of-magnitude comparison.",
+        strengths: ["Avoids a single-source interpretation", "Allows the tool to be matched to the project", "Makes assumptions more explicit"],
+        limits: ["Requires methodological harmonisation", "Requires system boundaries to be documented", "Can make reporting more complex if the framework is not clear"]
+      },
+      {
+        title: "Multi-impact assessment",
+        intro: "Projects are analysed, where possible, across clinical, organisational, economic and environmental dimensions.",
+        strengths: ["Closer to real-world practice", "More transferable for decision-makers", "Helps weigh several action levers"],
+        limits: ["Not all dimensions are always quantifiable", "Some comparisons remain exploratory", "Trade-offs should be made explicit"]
+      },
+      {
+        title: "Traceability of assumptions",
+        intro: "When field data are unavailable, simplifying assumptions are used and shared so they can be improved.",
+        strengths: ["Makes the method reproducible", "Facilitates critical review", "Allows updates as estimates improve"],
+        limits: ["Remains dependent on indirect data", "May under- or over-estimate some situations", "Should be revised whenever more robust local data become available"]
+      }
     ];
 
-    const publications = [
+    const publicationsFr = [
       {
         title: "Optimisation des prescriptions en HAD",
         type: "Communication orale",
@@ -1982,19 +2304,178 @@
         ]
       }
     ];
-
-    const themeOptions = ["Tous", ...new Set(projects.map(project => project.theme))];
-    const statusOptions = [
-      { key: "all", label: "Tous" },
-      { key: "awarded", label: "Primé" },
-      { key: "valued", label: "Valorisé" },
-      { key: "publication", label: "En cours de publication" },
-      { key: "progress", label: "En cours" },
-      { key: "structuring", label: "En structuration" },
-      { key: "deployed", label: "Déployé" },
-      { key: "published", label: "Publié" },
-      { key: "exploratory", label: "Exploratoire" }
+    const publicationsEn = [
+      {
+        title: "Prescription optimisation in Hospital-at-Home",
+        type: "Oral communication",
+        event: "Hopipharm",
+        year: "2025",
+        project: "Clinical pharmacy",
+        summary: "Analysis of pharmaceutical interventions aimed at reducing non-relevant prescriptions and avoidable administration modalities.",
+        featured: true,
+        featuredReason: "Oral selection",
+        kpis: [
+          { label: "Acceptance", value: "> 90% of interventions" },
+          { label: "Main lever", value: "deprescribing and simplification" },
+          { label: "Setting", value: "territorial Hospital-at-Home" }
+        ],
+        links: [
+          { label: "Watch video", href: "https://mediatheque.synprefh.cyim.com/mediatheque/media.aspx?mediaId=247070&channel=23854" },
+          { label: "Download PDF", href: "pdf/optimisation-prescriptions-had.pdf" },
+          { label: "APM News report", href: "https://www.apmnews.com/nostory?objet=423688" }
+        ]
+      },
+      {
+        title: "Optimisation of washer-disinfector cycles",
+        type: "Article",
+        event: "Journal de Pharmacie Clinique",
+        year: "2024",
+        project: "Sterilisation",
+        summary: "Adjustment of washer-disinfector temperature/time settings to reduce electricity use while maintaining the expected disinfection level.",
+        featured: true,
+        featuredReason: "Publication",
+        kpis: [
+          { label: "Electricity use", value: "around 30% reduction" },
+          { label: "Method", value: "temperature/time settings" },
+          { label: "Rationale", value: "reproducible approach" }
+        ],
+        links: [
+          { label: "Read article", href: "https://www.jle.com/fr/revues/jpc/e-docs/maitrise_de_la_consommation_electrique_des_laveurs_desinfecteurs_par_optimisation_du_couple_temperature_duree_350922/article.phtml" }
+        ]
+      },
+      {
+        title: "Deprescribing in Hospital-at-Home",
+        type: "Oral communication",
+        event: "SFPC",
+        year: "2026",
+        project: "Clinical pharmacy",
+        summary: "Study of situations in which deprescribing is relevant in Hospital-at-Home, with analysis of benefits, limitations and conditions for acceptance.",
+        featured: true,
+        featuredReason: "Oral selection",
+        kpis: [
+          { label: "Acceptance", value: "93% of proposals" },
+          { label: "Carbon impact", value: "around 340 kg CO₂ eq/month" },
+          { label: "Assessment", value: "clinical, economic and environmental" }
+        ],
+        links: [{ label: "Download PDF", href: "pdf/deprescrire-sans-nuire.pdf" }]
+      },
+      {
+        title: "Eco-prescribing in Hospital-at-Home",
+        type: "Conference",
+        event: "ANAP",
+        year: "2026",
+        project: "Clinical pharmacy",
+        summary: "Field experience on integrating environmental criteria into home-care therapeutic decisions.",
+        kpis: [
+          { label: "Approach", value: "field-based and organisational" },
+          { label: "Scope", value: "home-care prescribing" },
+          { label: "Objective", value: "reduction of avoidable care" }
+        ],
+        links: [{ label: "Download PDF", href: "pdf/anap.pdf" }]
+      },
+      {
+        title: "Territorial organisation of Hospital-at-Home",
+        type: "Conference",
+        event: "ORPHEM",
+        year: "2026",
+        project: "Clinical pharmacy",
+        summary: "Analysis of Hospital-at-Home organisation in a constrained territory, between logistics, clinical continuity and available resources.",
+        kpis: [
+          { label: "Territory", value: "constrained geographic area" },
+          { label: "Challenge", value: "city-hospital coordination" },
+          { label: "Perspective", value: "clinical and logistical" }
+        ],
+        links: [{ label: "Download PDF", href: "pdf/orphem.pdf" }]
+      },
+      {
+        title: "Pharmacy and environmental transition",
+        type: "Conference",
+        event: "National Hospital Group Meeting",
+        year: "2024",
+        project: "Environmental transition",
+        summary: "Presentation of the role of pharmacy teams in reducing the environmental impact of the medicines pathway.",
+        kpis: [
+          { label: "Framework", value: "hospital group" },
+          { label: "Scope", value: "medicines pathway" },
+          { label: "Message", value: "operational role of hospital pharmacies" }
+        ],
+        links: [{ label: "Download PDF", href: "pdf/ght-ecologie.pdf" }]
+      },
+      {
+        title: "LCA and generative models",
+        type: "Poster",
+        event: "Hopipharm",
+        year: "2026",
+        project: "ACV",
+        summary: "Evaluation of generative AI models for estimating orders of magnitude of medicines-related environmental impact.",
+        kpis: [
+          { label: "Models evaluated", value: "7 generative models" },
+          { label: "Main result", value: "high variability in estimates" },
+          { label: "Conclusion", value: "human review required" }
+        ],
+        links: [{ label: "Download PDF", href: "pdf/acv-llm-benchmark.pdf" }]
+      },
+      {
+        title: "Medicine returns in Hospital-at-Home",
+        type: "Oral communication",
+        event: "Hopipharm",
+        year: "2026",
+        project: "Logistics / Dispensing",
+        summary: "Quantification of medicine returns in Hospital-at-Home and development of a score to prioritise medicines suitable for reintegration.",
+        featured: true,
+        featuredReason: "Award-winning work",
+        kpis: [
+          { label: "Returns observed", value: "8,573 units" },
+          { label: "Dispensings affected", value: "53 %" },
+          { label: "Monthly impact", value: "2.5 t CO₂ eq and €3,215" }
+        ],
+        links: [{ label: "Download PDF", href: "pdf/retours-had.pdf" }]
+      },
+      {
+        title: "Retrofficine",
+        type: "Poster",
+        event: "EAHP",
+        year: "2026",
+        project: "Logistics / Dispensing",
+        summary: "Reorganisation of the city-hospital dispensing pathway to reduce patient travel and secure continuity of treatment.",
+        featured: true,
+        featuredReason: "Award-winning work",
+        kpis: [
+          { label: "Objective", value: "reduce travel" },
+          { label: "Organisation", value: "city-hospital coordination" },
+          { label: "Model", value: "territorial and reproducible" }
+        ],
+        links: [{ label: "Download PDF", href: "pdf/retrofficine.pdf" }]
+      },
+      {
+        title: "Ready-to-use gemcitabine",
+        type: "Oral communication",
+        event: "GERPAC",
+        year: "2025",
+        project: "Production",
+        summary: "Environmental comparison between hospital reconstitution and ready-to-use gemcitabine formats.",
+        featured: true,
+        featuredReason: "Oral selection",
+        kpis: [
+          { label: "Carbon impact", value: "around 50% reduction" },
+          { label: "Observed gain", value: "3.6 t CO₂ eq avoided" },
+          { label: "Comparison", value: "ready-to-use vs reconstitution" }
+        ],
+        links: [
+          { label: "Poster", href: "pdf/gemcitabine-rtu.pdf" },
+          { label: "Oral communication", href: "pdf/gemcitabine-rtu2.pdf" },
+          { label: "PharmacyUpdateOnline report", href: "https://pharmacyupdate.online/2025/11/rtu-gemcitabine-reduces-the-environmental-impact-of-chemotherapy/?utm_source=linkedin&utm_medium=social&utm_campaign=organic" }
+        ]
+      }
     ];
+
+    let currentLang = localStorage.getItem("siteLang") || "fr";
+    let projects = [];
+    let sources = [];
+    let methods = [];
+    let publications = [];
+    let themeOptions = [];
+    let statusOptions = [];
 
     let currentTheme = "Tous";
     let currentStatus = "all";
@@ -2018,6 +2499,174 @@
     let currentSourceIndex = 0;
     let currentPubType = "Tous";
     let currentPubTitle = null;
+
+
+    const langText = {
+      fr: {
+        htmlLang: "fr",
+        title: "Décarbonons la pharmacie hospitalière",
+        brand: "Décarbonons la <span>pharmacie hospitalière</span>",
+        nav: ["Projets", "Méthodologie", "Nos outils", "Travaux valorisés", "Qui sommes nous", "Ressources", "À propos"],
+        heroTitle: "Ensemble, décarbonons notre hôpital",
+        heroText: "Ce projet vise à recenser les sujets de recherche que nous avons abordés au sein de notre hôpital, concernant la thématique écologique. L'objectif est de partager les méthodologies, outils, sources, et résultats obtenus, afin de mieux communiquer, rendre ces projets reproductibles d'un centre à l'autre, et promouvoir l'écologie en pharmacie hospitalière.",
+        heroPrimary: "Voir les projets",
+        heroSecondary: "Voir la méthodologie",
+        projectsTitle: "Projets",
+        projectsSubtitle: "Filtrage par thématique et par statut. Le détail s’affiche dans le panneau de droite.",
+        topicLabel: "Thématique",
+        statusLabel: "Statut",
+        selectProjectTitle: "Sélectionnez un projet",
+        selectProjectText: "Choisissez une fiche à gauche pour afficher son résumé.",
+        methodologyTitle: "Méthodologie",
+        methodologySubtitle: "Référentiels et outils utilisés actuellement pour documenter l’impact du soin, du circuit du médicament et des projets territoriaux.",
+        sourcesTitle: "Sources mobilisées",
+        sourcesText: "Nous utilisons plusieurs sources pour nos travaux, chacune ayant des applicabilités et limites différentes.",
+        disposalTitle: "Hypothèses de destruction",
+        disposalText: "Les hypothèses de calcul que nous utilisons, pour la destruction des médicaments non administrés (issues de la data de l'ADEME) sont accessibles ici.",
+        disposalLink: "Ouvrir le document technique",
+        toolsTitle: "Nos outils",
+        toolsSubtitle: "Outils numériques développés ou mobilisés dans le cadre des travaux menés en pharmacie hospitalière.",
+        toolBadges: ["Outil opérationnel", "Production de chimiothérapies", "Standardisation"],
+        toolLead: "Logiciel d’aide à la standardisation des doses et à l’anticipation de la production de chimiothérapies. L’outil vise à faciliter le dimensionnement des préparations, le suivi de l’activité et l’analyse des volumes produits.",
+        toolKpis: [["Dose-banding", "standardisation des doses"], ["Anticipation", "planification de production"], ["Dashboard", "suivi de l’activité"]],
+        toolActions: ["Voir le site", "Lire l’article"],
+        toolSideTitles: ["De la recherche au terrain", "Objectifs opérationnels", "Indicateurs suivis"],
+        toolSideTexts: ["Noxelia s’inscrit dans les travaux menés sur la standardisation des doses et l’anticipation des préparations en unité de reconstitution.", "L’outil aide à anticiper l’activité, suivre les volumes préparés et documenter les indicateurs utiles à l’organisation de la production.", "Nombre de préparations, taux de standardisation, activité anticipable, volumes produits et indicateurs médico-économiques ou environnementaux lorsque les données sont disponibles."],
+        publicationsTitle: "Travaux valorisés",
+        publicationsSubtitle: "Publications, communications orales, conférences et posters issus des projets menés.",
+        whoTitle: "Qui sommes nous",
+        profileLinks: ["Voir le profil LinkedIn", "Voir le profil LinkedIn"],
+        profileTexts: ["Pharmacien hospitalier sur le secteur médicament au CHICAS (Gap), responsable des jeunes pharmaciens européens à l’EAHP, impliqué sur la thématique de l’écologie en santé.", "Pharmacien chercheur et assistant spécialiste au CHICAS (Gap), en charge d’une unité d’HAD territoriale, expérimentant différentes approches de pharmacie clinique et de transition écologique."],
+        resourcesTitle: "Ressources / personnes référentes",
+        resourcesSubtitle: "Quelques ressources et structures utiles pour prolonger la réflexion ou situer les travaux dans un écosystème plus large.",
+        aboutTitle: "À propos du site",
+        aboutTexts: ["Ce site n’est pas un référentiel officiel. Il s’agit d’un projet indépendant, construit à partir de nos travaux, de nos hypothèses et de nos retours d’expérience. Il peut donc contenir des inexactitudes, des simplifications ou des éléments encore en cours de discussion.", "L’objectif est surtout de partager une démarche, de rendre visibles des projets de terrain et de proposer un support de discussion ou de reproduction pour d’autres équipes."],
+        resourceTitles: ["CERES – SFPC", "The Shift Project – Santé", "Carebone – AP-HP", "Ecovamed", "YewMaker", "HealthcareLCA"],
+        resourceTexts: ["Collectif d’écoresponsabilité en pharmacie clinique (groupe de travail SFPC).", "Réflexion systémique sur la décarbonation du système de santé.", "Présentation de l’outil Carebone mis à disposition des professionnels de santé.", "Référentiel utilisé pour certaines estimations environnementales des médicaments.", "Ressource complémentaire utile pour confronter certaines approches et données.", "Ressource plus large autour des ACV et des approches environnementales en santé."],
+        resourceLink: "Voir la ressource",
+        footer: "Décarbonons la pharmacie hospitalière",
+        statusOptions: [
+          { key: "all", label: "Tous" }, { key: "awarded", label: "Primé" }, { key: "valued", label: "Valorisé" }, { key: "publication", label: "En cours de publication" }, { key: "progress", label: "En cours" }, { key: "structuring", label: "En structuration" }, { key: "deployed", label: "Déployé" }, { key: "published", label: "Publié" }, { key: "exploratory", label: "Exploratoire" }
+        ],
+        all: "Tous", noProjectTitle: "Aucun projet pour ce filtre", noProjectText: "Aucun projet ne correspond à cette combinaison de filtres.", source: "Source", reference: "Référentiel", strengths: "Forces", limits: "Limites", methodLimits: "Faiblesses / limites", pubTypes: { all: "Tous", oral: "Communication orale", conference: "Conférence", poster: "Poster", article: "Article" }, noPubTitle: "Aucun travail sélectionné", noPubText: "Aucun travail ne correspond à ce filtre.", noPubGrid: "Aucun travail pour ce filtre.", available: "Supports disponibles", viewWork: "Voir le travail", year: "Année", axis: "Axe", frame: "Cadre"
+      },
+      en: {
+        htmlLang: "en",
+        title: "Decarbonising hospital pharmacy",
+        brand: "Decarbonising <span>hospital pharmacy</span>",
+        nav: ["Projects", "Methodology", "Our tools", "Selected outputs", "Who we are", "Resources", "About"],
+        heroTitle: "Together, let’s decarbonise hospital care",
+        heroText: "This website brings together research and field projects carried out in our hospital around environmental sustainability in hospital pharmacy. Its purpose is to share methods, tools, sources and results, so that these approaches can be discussed, reproduced across centres and improved collectively.",
+        heroPrimary: "View projects",
+        heroSecondary: "View methodology",
+        projectsTitle: "Projects",
+        projectsSubtitle: "Filter by topic and status. Details are displayed in the right-hand panel.",
+        topicLabel: "Topic",
+        statusLabel: "Status",
+        selectProjectTitle: "Select a project",
+        selectProjectText: "Choose an item on the left to display its summary.",
+        methodologyTitle: "Methodology",
+        methodologySubtitle: "Reference frameworks and tools currently used to document the impact of care, medicines pathways and territorial projects.",
+        sourcesTitle: "Sources used",
+        sourcesText: "We use several sources in our work, each with different scopes, strengths and limitations.",
+        disposalTitle: "Disposal assumptions",
+        disposalText: "The assumptions used to estimate the disposal of non-administered medicines, based on ADEME data, are available here.",
+        disposalLink: "Open the technical document",
+        toolsTitle: "Our tools",
+        toolsSubtitle: "Digital tools developed or used as part of our hospital pharmacy work.",
+        toolBadges: ["Operational tool", "Chemotherapy production", "Dose standardisation"],
+        toolLead: "Software designed to support dose standardisation and anticipation of chemotherapy production. The tool helps size preparations, monitor activity and analyse production volumes.",
+        toolKpis: [["Dose banding", "dose standardisation"], ["Forecasting", "production planning"], ["Dashboard", "activity monitoring"]],
+        toolActions: ["Visit the website", "Read the article"],
+        toolSideTitles: ["From research to practice", "Operational objectives", "Indicators monitored"],
+        toolSideTexts: ["Noxelia is linked to work on dose standardisation and anticipation of preparations in cytotoxic reconstitution units.", "The tool helps anticipate activity, monitor prepared volumes and document indicators useful for organising production.", "Number of preparations, standardisation rate, anticipatable activity, production volumes and medico-economic or environmental indicators when data are available."],
+        publicationsTitle: "Selected outputs",
+        publicationsSubtitle: "Publications, oral communications, conferences and posters derived from the projects carried out.",
+        whoTitle: "Who we are",
+        profileLinks: ["View LinkedIn profile", "View LinkedIn profile"],
+        profileTexts: ["Hospital pharmacist in the medicines sector at CHICAS (Gap), lead for European young pharmacists within the EAHP, involved in environmental sustainability in healthcare.", "Pharmacist-researcher and specialist assistant at CHICAS (Gap), in charge of a territorial Hospital-at-Home unit, developing and evaluating practical approaches in clinical pharmacy and sustainability."],
+        resourcesTitle: "Resources / reference organisations",
+        resourcesSubtitle: "Useful resources and organisations to place the work in a wider ecosystem.",
+        aboutTitle: "About this website",
+        aboutTexts: ["This website is not an official reference framework. It is an independent project built from our work, assumptions and field experience. It may therefore contain simplifications, inaccuracies or points still under discussion.", "Its main purpose is to share an approach, make field projects visible and provide a basis for discussion or reproduction by other teams."],
+        resourceTitles: ["CERES – SFPC", "The Shift Project – Healthcare", "Carebone – AP-HP", "Ecovamed", "YewMaker", "HealthcareLCA"],
+        resourceTexts: ["Collective for eco-responsibility in clinical pharmacy (SFPC working group).", "System-level work on decarbonising healthcare.", "Presentation of Carebone, a tool made available to healthcare professionals.", "Reference source used for selected environmental estimates of medicines.", "Complementary resource useful for comparing methods and data.", "Broader resource on life-cycle assessments and environmental approaches in healthcare."],
+        resourceLink: "View resource",
+        footer: "Decarbonising hospital pharmacy",
+        statusOptions: [
+          { key: "all", label: "All" }, { key: "awarded", label: "Awarded" }, { key: "valued", label: "Presented" }, { key: "publication", label: "Publication in progress" }, { key: "progress", label: "Ongoing" }, { key: "structuring", label: "In structuring" }, { key: "deployed", label: "Deployed" }, { key: "published", label: "Published" }, { key: "exploratory", label: "Exploratory" }
+        ],
+        all: "All", noProjectTitle: "No project for this filter", noProjectText: "No project matches this filter combination.", source: "Source", reference: "Reference framework", strengths: "Strengths", limits: "Limitations", methodLimits: "Limitations", pubTypes: { all: "All", oral: "Oral communication", conference: "Conference", poster: "Poster", article: "Article" }, noPubTitle: "No output selected", noPubText: "No output matches this filter.", noPubGrid: "No output for this filter.", available: "Available materials", viewWork: "View output", year: "Year", axis: "Area", frame: "Context"
+      }
+    };
+
+    function t(key) { return langText[currentLang][key]; }
+
+    function applyLanguageData() {
+      projects = currentLang === "fr" ? projectsFr : projectsEn;
+      sources = currentLang === "fr" ? sourcesFr : sourcesEn;
+      methods = currentLang === "fr" ? methodsFr : methodsEn;
+      publications = currentLang === "fr" ? publicationsFr : publicationsEn;
+      statusOptions = t("statusOptions");
+      themeOptions = [t("all"), ...new Set(projects.map(project => project.theme))];
+      currentTheme = t("all");
+      currentStatus = "all";
+      currentProjectId = null;
+      currentPubType = t("all");
+      currentPubTitle = null;
+      currentSourceIndex = 0;
+    }
+
+    function setStaticText() {
+      document.documentElement.lang = t("htmlLang");
+      document.title = t("title");
+      document.querySelector(".brand").innerHTML = t("brand");
+      document.querySelectorAll(".nav-links > a").forEach((a, index) => { if (t("nav")[index]) a.textContent = t("nav")[index]; });
+      document.querySelector(".hero-card h1").textContent = t("heroTitle");
+      document.querySelector(".hero-card p").textContent = t("heroText");
+      document.querySelectorAll(".hero-actions a")[0].textContent = t("heroPrimary");
+      document.querySelectorAll(".hero-actions a")[1].textContent = t("heroSecondary");
+      const heads = document.querySelectorAll(".section-head");
+      heads[0].querySelector("h2").textContent = t("projectsTitle"); heads[0].querySelector("p").textContent = t("projectsSubtitle");
+      document.querySelectorAll("#projets .filter-label")[0].textContent = t("topicLabel"); document.querySelectorAll("#projets .filter-label")[1].textContent = t("statusLabel");
+      detailTitleEl.textContent = t("selectProjectTitle"); detailSummaryEl.textContent = t("selectProjectText");
+      heads[1].querySelector("h2").textContent = t("methodologyTitle"); heads[1].querySelector("p").textContent = t("methodologySubtitle");
+      document.querySelectorAll(".method-note h3")[0].textContent = t("sourcesTitle"); document.querySelectorAll(".method-note p")[0].textContent = t("sourcesText");
+      document.querySelectorAll(".method-note h3")[1].textContent = t("disposalTitle"); document.querySelectorAll(".method-note p")[1].textContent = t("disposalText"); document.querySelector(".method-note .text-link").textContent = t("disposalLink");
+      document.getElementById("sourcesPrev").setAttribute("aria-label", currentLang === "fr" ? "Source précédente" : "Previous source");
+      document.getElementById("sourcesNext").setAttribute("aria-label", currentLang === "fr" ? "Source suivante" : "Next source");
+      heads[2].querySelector("h2").textContent = t("toolsTitle"); heads[2].querySelector("p").textContent = t("toolsSubtitle");
+      document.querySelectorAll(".tool-badges .tag").forEach((el, i) => { el.textContent = t("toolBadges")[i]; });
+      document.querySelector(".tool-lead").textContent = t("toolLead");
+      document.querySelectorAll(".tool-kpi").forEach((el, i) => { el.querySelector("strong").textContent = t("toolKpis")[i][0]; el.querySelector("span").textContent = t("toolKpis")[i][1]; });
+      document.querySelectorAll(".tool-actions a").forEach((el, i) => { el.textContent = t("toolActions")[i]; });
+      document.querySelectorAll(".tool-mini-card").forEach((el, i) => { el.querySelector("h4").textContent = t("toolSideTitles")[i]; el.querySelector("p").textContent = t("toolSideTexts")[i]; });
+      heads[3].querySelector("h2").textContent = t("publicationsTitle"); heads[3].querySelector("p").textContent = t("publicationsSubtitle");
+      heads[4].querySelector("h2").textContent = t("whoTitle");
+      document.querySelectorAll(".profile-card p").forEach((el, i) => { if (t("profileTexts")[i]) el.textContent = t("profileTexts")[i]; });
+      document.querySelectorAll(".linkedin-link").forEach((el, i) => { el.textContent = t("profileLinks")[i]; });
+      heads[5].querySelector("h2").textContent = t("resourcesTitle"); heads[5].querySelector("p").textContent = t("resourcesSubtitle");
+      document.querySelectorAll(".resource-card").forEach((card, i) => { if (t("resourceTitles")[i]) card.querySelector("h3").textContent = t("resourceTitles")[i]; if (t("resourceTexts")[i]) card.querySelector("p").textContent = t("resourceTexts")[i]; const link = card.querySelector(".text-link"); if (link) link.textContent = t("resourceLink"); });
+      document.querySelector("#apropos h2").textContent = t("aboutTitle");
+      document.querySelectorAll("#apropos .about-card > p:not(.small)").forEach((el, i) => { if (t("aboutTexts")[i]) el.textContent = t("aboutTexts")[i]; });
+      document.querySelector("footer .container > div:first-child").textContent = t("footer");
+      document.getElementById("btn-fr").classList.toggle("active", currentLang === "fr");
+      document.getElementById("btn-en").classList.toggle("active", currentLang === "en");
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem("siteLang", lang);
+      applyLanguageData();
+      setStaticText();
+      renderThemeFilters();
+      renderStatusFilters();
+      renderProjects();
+      renderSources();
+      renderMethods();
+      renderPublicationFilters();
+      renderPublications();
+    }
 
     function statusBadgeClass(status) {
       const map = {
@@ -2064,7 +2713,7 @@
 
     function getFilteredProjects() {
       return projects.filter(project => {
-        const themeOk = currentTheme === "Tous" || project.theme === currentTheme;
+        const themeOk = currentTheme === t("all") || project.theme === currentTheme;
         const statusOk = currentStatus === "all" || project.statuses.includes(currentStatus);
         return themeOk && statusOk;
       });
@@ -2098,8 +2747,8 @@
         currentProjectId = null;
         detailTagsEl.innerHTML = "";
         detailStatusesEl.innerHTML = "";
-        detailTitleEl.textContent = "Aucun projet pour ce filtre";
-        detailSummaryEl.textContent = "Aucun projet ne correspond à cette combinaison de filtres.";
+        detailTitleEl.textContent = t("noProjectTitle");
+        detailSummaryEl.textContent = t("noProjectText");
         detailKpisEl.innerHTML = "";
         detailGridEl.innerHTML = "";
       }
@@ -2132,18 +2781,18 @@
       sourcesCarouselEl.innerHTML = sources.map((source, index) => `
         <article class="source-card ${index === currentSourceIndex ? "active" : ""}">
           <div class="source-meta">
-            <span class="tag">Source ${String(index + 1).padStart(2, "0")}</span>
-            <span class="tag">Référentiel</span>
+            <span class="tag">${t("source")} ${String(index + 1).padStart(2, "0")}</span>
+            <span class="tag">${t("reference")}</span>
           </div>
           <h3>${source.title}</h3>
           <p>${source.intro}</p>
           <div class="source-sheet">
             <div class="source-pane">
-              <h4>Forces</h4>
+              <h4>${t("strengths")}</h4>
               <ul>${source.strengths.map(item => `<li>${item}</li>`).join("")}</ul>
             </div>
             <div class="source-pane">
-              <h4>Limites</h4>
+              <h4>${t("limits")}</h4>
               <ul>${source.limits.map(item => `<li>${item}</li>`).join("")}</ul>
             </div>
           </div>
@@ -2176,11 +2825,11 @@
           <h3>${method.title}</h3>
           <p>${method.intro}</p>
           <div class="detail-block" style="margin-top: 12px;">
-            <h4>Forces</h4>
+            <h4>${t("strengths")}</h4>
             <ul>${method.strengths.map(item => `<li>${item}</li>`).join("")}</ul>
           </div>
           <div class="detail-block" style="margin-top: 12px;">
-            <h4>Faiblesses / limites</h4>
+            <h4>${t("methodLimits")}</h4>
             <ul>${method.limits.map(item => `<li>${item}</li>`).join("")}</ul>
           </div>
         </article>
@@ -2189,25 +2838,25 @@
 
 
     function publicationTypeLabel(type) {
-      if (type.includes("Communication orale") || type.includes("communication orale") || type.includes("Support")) return "Communication orale";
-      if (type.includes("Conférence")) return "Conférence";
-      if (type.includes("Poster")) return "Poster";
-      if (type.includes("Publication") || type.includes("Article")) return "Article";
+      if (type.includes("Communication orale") || type.includes("Oral communication") || type.includes("Support")) return t("pubTypes").oral;
+      if (type.includes("Conférence") || type.includes("Conference")) return t("pubTypes").conference;
+      if (type.includes("Poster")) return t("pubTypes").poster;
+      if (type.includes("Publication") || type.includes("Article")) return t("pubTypes").article;
       return type;
     }
 
     function getPublicationTypes() {
-      const order = ["Tous", "Communication orale", "Conférence", "Poster", "Article"];
+      const order = [t("pubTypes").all, t("pubTypes").oral, t("pubTypes").conference, t("pubTypes").poster, t("pubTypes").article];
       const existing = new Set(publications.map(pub => publicationTypeLabel(pub.type)));
-      return order.filter(type => type === "Tous" || existing.has(type));
+      return order.filter(type => type === t("pubTypes").all || existing.has(type));
     }
 
     function getPublicationKpis(pub) {
       if (Array.isArray(pub.kpis) && pub.kpis.length) return pub.kpis;
       return [
-        { label: "Année", value: pub.year },
-        { label: "Axe", value: pub.project.split("/")[0].trim() },
-        { label: "Cadre", value: pub.event }
+        { label: t("year"), value: pub.year },
+        { label: t("axis"), value: pub.project.split("/")[0].trim() },
+        { label: t("frame"), value: pub.event }
       ];
     }
 
@@ -2232,10 +2881,10 @@
             </div>
           </div>
           <div class="pub-detail-side">
-            <h4>Supports disponibles</h4>
+            <h4>${t("available")}</h4>
             <p class="small muted">${pub.project}</p>
             <div class="pub-actions">
-              ${primaryLink ? `<a class="pub-primary-link" href="${primaryLink.href}" target="_blank" rel="noreferrer">Voir le travail</a>` : ""}
+              ${primaryLink ? `<a class="pub-primary-link" href="${primaryLink.href}" target="_blank" rel="noreferrer">${t("viewWork")}</a>` : ""}
               ${pub.links.slice(1, 3).map(link => `<a class="pub-secondary-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}</a>`).join("")}
             </div>
           </div>
@@ -2264,7 +2913,7 @@
 
     function getFilteredPublications() {
       return publications
-        .filter(pub => currentPubType === "Tous" || publicationTypeLabel(pub.type) === currentPubType)
+        .filter(pub => currentPubType === t("pubTypes").all || publicationTypeLabel(pub.type) === currentPubType)
         .sort((a, b) => Number(b.year) - Number(a.year) || a.title.localeCompare(b.title));
     }
 
@@ -2272,8 +2921,8 @@
       const filtered = getFilteredPublications();
 
       if (!filtered.length) {
-        pubGridEl.innerHTML = `<div class="pub-empty">Aucun travail pour ce filtre.</div>`;
-        pubDetailEl.innerHTML = `<div class="pub-detail-inner"><div><h3>Aucun travail sélectionné</h3><p>Aucun travail ne correspond à ce filtre.</p></div></div>`;
+        pubGridEl.innerHTML = `<div class="pub-empty">${t("noPubGrid")}</div>`;
+        pubDetailEl.innerHTML = `<div class="pub-detail-inner"><div><h3>${t("noPubTitle")}</h3><p>${t("noPubText")}</p></div></div>`;
         return;
       }
 
@@ -2307,13 +2956,9 @@
       renderPublicationDetail(selected);
     }
 
-    renderThemeFilters();
-    renderStatusFilters();
-    renderProjects();
-    renderSources();
-    renderMethods();
-    renderPublicationFilters();
-    renderPublications();
+    document.getElementById("btn-fr").addEventListener("click", () => setLang("fr"));
+    document.getElementById("btn-en").addEventListener("click", () => setLang("en"));
+    setLang(currentLang);
   </script>
 </body>
 </html>
