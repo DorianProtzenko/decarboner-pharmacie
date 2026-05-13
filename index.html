@@ -900,6 +900,37 @@
       color: var(--muted);
     }
 
+
+
+    .tools-showcase + .tools-showcase {
+      margin-top: 18px;
+    }
+
+    .breaking-stab-showcase .tool-hero {
+      background:
+        radial-gradient(circle at 88% 12%, rgba(45,143,177,0.20), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #eef7fb 100%);
+      box-shadow: 0 22px 54px rgba(25, 86, 118, 0.13);
+    }
+
+    .breaking-stab-showcase .tool-hero::after {
+      background: linear-gradient(135deg, rgba(45,143,177,0.16), rgba(29,122,86,0.05));
+    }
+
+    .breaking-stab-showcase .tag {
+      background: #e8f4fb;
+      color: #195676;
+    }
+
+    .breaking-stab-showcase .btn.primary {
+      background: linear-gradient(135deg, #195676, #2d8fb1);
+    }
+
+    .breaking-stab-showcase .tool-mini-card {
+      background: linear-gradient(180deg, #ffffff, #f0f8fc);
+    }
+
+
     /* ===== TRAVAUX VALORISÉS — BIBLIOTHÈQUE INTERACTIVE ===== */
     .pub-portfolio-shell {
       display: grid;
@@ -1381,6 +1412,44 @@
             <article class="tool-mini-card">
               <h4>Indicateurs suivis</h4>
               <p>Nombre de préparations, taux de standardisation, activité anticipable, volumes produits et indicateurs médico-économiques ou environnementaux lorsque les données sont disponibles.</p>
+            </article>
+          </aside>
+        </div>
+
+        <div class="tools-showcase breaking-stab-showcase">
+          <article class="tool-hero">
+            <div class="bs-tool-badges tool-badges-secondary">
+              <span class="tag" id="bsBadge1">Base de données</span>
+              <span class="tag" id="bsBadge2">Stabilité des perfusions</span>
+              <span class="tag" id="bsBadge3">Intra / extra-hospitalier</span>
+            </div>
+            <h3 id="bsTitle">Breaking Stab</h3>
+            <p class="tool-lead" id="bsLead">
+              Outil de compilation de données de stabilité pour perfusion en intra et extra-hospitalier. Cette base sert de socle aux travaux sur l’impact économique et écologique des différentes méthodes de perfusion.
+            </p>
+            <div class="tool-kpis" id="bsKpis">
+              <div class="tool-kpi"><strong id="bsKpi1Title">Stabilité</strong><span class="small muted" id="bsKpi1Text">molécules, solvants, concentrations et contenants</span></div>
+              <div class="tool-kpi"><strong id="bsKpi2Title">Perfusion</strong><span class="small muted" id="bsKpi2Text">poche, PSE, diffuseur, pompe, ANAPA</span></div>
+              <div class="tool-kpi"><strong id="bsKpi3Title">Moteur à venir</strong><span class="small muted" id="bsKpi3Text">comparaison coût et CO₂ selon la posologie</span></div>
+            </div>
+            <div class="tool-actions">
+              <a class="btn primary" id="bsPrimaryAction" href="https://dorianprotzenko.github.io/BreakingStab/" target="_blank" rel="noreferrer">Ouvrir Breaking Stab</a>
+              <a class="btn" id="bsSecondaryAction" href="#projets">Voir le projet associé</a>
+            </div>
+          </article>
+
+          <aside class="tool-side">
+            <article class="tool-mini-card bs-mini-card">
+              <h4 id="bsSide1Title">Base de travail</h4>
+              <p id="bsSide1Text">Breaking Stab compile des données issues de recommandations, données fabricants, documents institutionnels et littérature sélectionnée. Ce n’est pas un référentiel officiel : toute utilisation impose une double vérification locale.</p>
+            </article>
+            <article class="tool-mini-card bs-mini-card">
+              <h4 id="bsSide2Title">Deuxième moteur prévu</h4>
+              <p id="bsSide2Text">L’objectif est d’ajouter un module où l’on renseigne une posologie pour comparer les méthodes de perfusion possibles, leur coût en intra et extra-hospitalier, et l’impact CO₂ généré.</p>
+            </article>
+            <article class="tool-mini-card bs-mini-card">
+              <h4 id="bsSide3Title">Aide au choix</h4>
+              <p id="bsSide3Text">Le futur moteur devra aider à arbitrer entre faisabilité de stabilité, organisation des soins, coût des dispositifs et empreinte carbone, notamment pour l’HAD et les perfusions prolongées.</p>
             </article>
           </aside>
         </div>
@@ -2529,6 +2598,7 @@
         toolActions: ["Voir le site", "Lire l’article"],
         toolSideTitles: ["De la recherche au terrain", "Objectifs opérationnels", "Indicateurs suivis"],
         toolSideTexts: ["Noxelia s’inscrit dans les travaux menés sur la standardisation des doses et l’anticipation des préparations en unité de reconstitution.", "L’outil aide à anticiper l’activité, suivre les volumes préparés et documenter les indicateurs utiles à l’organisation de la production.", "Nombre de préparations, taux de standardisation, activité anticipable, volumes produits et indicateurs médico-économiques ou environnementaux lorsque les données sont disponibles."],
+        breakingStab: { badges: ["Base de données", "Stabilité des perfusions", "Intra / extra-hospitalier"], title: "Breaking Stab", lead: "Outil de compilation de données de stabilité pour perfusion en intra et extra-hospitalier. Cette base sert de socle aux travaux sur l’impact économique et écologique des différentes méthodes de perfusion.", kpis: [["Stabilité", "molécules, solvants, concentrations et contenants"], ["Perfusion", "poche, PSE, diffuseur, pompe, ANAPA"], ["Moteur à venir", "comparaison coût et CO₂ selon la posologie"]], actions: ["Ouvrir Breaking Stab", "Voir le projet associé"], sideTitles: ["Base de travail", "Deuxième moteur prévu", "Aide au choix"], sideTexts: ["Breaking Stab compile des données issues de recommandations, données fabricants, documents institutionnels et littérature sélectionnée. Ce n’est pas un référentiel officiel : toute utilisation impose une double vérification locale.", "L’objectif est d’ajouter un module où l’on renseigne une posologie pour comparer les méthodes de perfusion possibles, leur coût en intra et extra-hospitalier, et l’impact CO₂ généré.", "Le futur moteur devra aider à arbitrer entre faisabilité de stabilité, organisation des soins, coût des dispositifs et empreinte carbone, notamment pour l’HAD et les perfusions prolongées."] },
         publicationsTitle: "Travaux valorisés",
         publicationsSubtitle: "Publications, communications orales, conférences et posters issus des projets menés.",
         whoTitle: "Qui sommes nous",
@@ -2577,6 +2647,7 @@
         toolActions: ["Visit the website", "Read the article"],
         toolSideTitles: ["From research to practice", "Operational objectives", "Indicators monitored"],
         toolSideTexts: ["Noxelia is linked to work on dose standardisation and anticipation of preparations in cytotoxic reconstitution units.", "The tool helps anticipate activity, monitor prepared volumes and document indicators useful for organising production.", "Number of preparations, standardisation rate, anticipatable activity, production volumes and medico-economic or environmental indicators when data are available."],
+        breakingStab: { badges: ["Database", "Infusion stability", "In / out-of-hospital"], title: "Breaking Stab", lead: "A compilation tool for infusion stability data in inpatient and outpatient settings. This database supports work on the economic and environmental impact of different infusion methods.", kpis: [["Stability", "molecules, diluents, concentrations and containers"], ["Infusion", "bag, syringe pump, elastomeric device, pump, ANAPA"], ["Upcoming engine", "cost and CO₂ comparison by dose regimen"]], actions: ["Open Breaking Stab", "View associated project"], sideTitles: ["Working database", "Second engine planned", "Decision support"], sideTexts: ["Breaking Stab compiles data from guidelines, manufacturers, institutional documents and selected literature. It is not an official reference source: any use requires local double-checking.", "The aim is to add a module where a dose regimen can be entered to compare possible infusion methods, their inpatient and outpatient costs, and the resulting CO₂ impact.", "The future engine should help arbitrate between stability feasibility, care organisation, device costs and carbon footprint, especially for Hospital-at-Home and prolonged infusions."] },
         publicationsTitle: "Selected outputs",
         publicationsSubtitle: "Publications, oral communications, conferences and posters derived from the projects carried out.",
         whoTitle: "Who we are",
@@ -2635,9 +2706,25 @@
       heads[2].querySelector("h2").textContent = t("toolsTitle"); heads[2].querySelector("p").textContent = t("toolsSubtitle");
       document.querySelectorAll(".tool-badges .tag").forEach((el, i) => { el.textContent = t("toolBadges")[i]; });
       document.querySelector(".tool-lead").textContent = t("toolLead");
-      document.querySelectorAll(".tool-kpi").forEach((el, i) => { el.querySelector("strong").textContent = t("toolKpis")[i][0]; el.querySelector("span").textContent = t("toolKpis")[i][1]; });
-      document.querySelectorAll(".tool-actions a").forEach((el, i) => { el.textContent = t("toolActions")[i]; });
-      document.querySelectorAll(".tool-mini-card").forEach((el, i) => { el.querySelector("h4").textContent = t("toolSideTitles")[i]; el.querySelector("p").textContent = t("toolSideTexts")[i]; });
+      document.querySelectorAll(".tools-showcase:not(.breaking-stab-showcase) .tool-kpi").forEach((el, i) => { el.querySelector("strong").textContent = t("toolKpis")[i][0]; el.querySelector("span").textContent = t("toolKpis")[i][1]; });
+      document.querySelectorAll(".tools-showcase:not(.breaking-stab-showcase) .tool-actions a").forEach((el, i) => { el.textContent = t("toolActions")[i]; });
+      document.querySelectorAll(".tools-showcase:not(.breaking-stab-showcase) .tool-mini-card").forEach((el, i) => { el.querySelector("h4").textContent = t("toolSideTitles")[i]; el.querySelector("p").textContent = t("toolSideTexts")[i]; });
+      const bs = t("breakingStab");
+      if (bs && document.getElementById("bsTitle")) {
+        ["bsBadge1", "bsBadge2", "bsBadge3"].forEach((id, i) => { document.getElementById(id).textContent = bs.badges[i]; });
+        document.getElementById("bsTitle").textContent = bs.title;
+        document.getElementById("bsLead").textContent = bs.lead;
+        [1, 2, 3].forEach((n, i) => {
+          document.getElementById(`bsKpi${n}Title`).textContent = bs.kpis[i][0];
+          document.getElementById(`bsKpi${n}Text`).textContent = bs.kpis[i][1];
+        });
+        document.getElementById("bsPrimaryAction").textContent = bs.actions[0];
+        document.getElementById("bsSecondaryAction").textContent = bs.actions[1];
+        [1, 2, 3].forEach((n, i) => {
+          document.getElementById(`bsSide${n}Title`).textContent = bs.sideTitles[i];
+          document.getElementById(`bsSide${n}Text`).textContent = bs.sideTexts[i];
+        });
+      }
       heads[3].querySelector("h2").textContent = t("publicationsTitle"); heads[3].querySelector("p").textContent = t("publicationsSubtitle");
       heads[4].querySelector("h2").textContent = t("whoTitle");
       document.querySelectorAll(".profile-card p").forEach((el, i) => { if (t("profileTexts")[i]) el.textContent = t("profileTexts")[i]; });
